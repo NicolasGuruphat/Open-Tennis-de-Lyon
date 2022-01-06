@@ -19,9 +19,9 @@ public class ObjectFactory {
     {
         try{
             Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from joueur"); 
+            ResultSet rslt = stm.executeQuery("select * from Joueurs"); 
             while(rslt.next()){
-                int id=rslt.getInt("ID");
+                int id=rslt.getInt("idJoueur");
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
@@ -30,16 +30,16 @@ public class ObjectFactory {
         }catch(Exception e){
             System.out.println(e);
         }
-        //Joueur.printAll();
+        Joueur.printAll();
     }
     
     public static void createArbitres()
     {
         try{
             Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from arbitre"); 
+            ResultSet rslt = stm.executeQuery("select * from Arbitres"); 
             while(rslt.next()){
-                int id=rslt.getInt("ID");
+                int id=rslt.getInt("idArbitre");
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");

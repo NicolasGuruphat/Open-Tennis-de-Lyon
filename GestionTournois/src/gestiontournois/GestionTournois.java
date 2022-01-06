@@ -22,6 +22,6 @@ public class GestionTournois {
     
     public static void main(String[] args) {
         ObjectFactory.createJoueurs();
-        ObjectFactory.createArbitres();
+        //ObjectFactory.createArbitres();
     }
 }
