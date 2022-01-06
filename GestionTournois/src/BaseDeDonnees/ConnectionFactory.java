@@ -10,19 +10,19 @@ import java.sql.*;
  */
 public class ConnectionFactory {
     
-        static Connection connection;
-        
-        public static Connection getConnetion(){
-            return connection;
+    static Connection connection;
+
+    public static Connection getConnection(){
+        return connection;
+    }
+
+    public static void createConnection(){
+        try{
+            connection = DriverManager.getConnection("jdbc:mariadb://iutdoua-web.univ-lyon1.fr/p2003245?user=p2003245&password=564094");
+            connection.setAutoCommit(true);
         }
-        
-        public static void createConnetion(){
-            try{
-                connection = DriverManager.getConnection("jdbc:mariadb://iutdoua-web.univ-lyon1.fr/p2003245?user=p2003245&password=564094");
-                connection.setAutoCommit(true);
-            }
-            catch(Exception e){
-                System.out.println(e); 
-            }
+        catch(Exception e){
+            System.out.println(e); 
         }
+    }
 }
