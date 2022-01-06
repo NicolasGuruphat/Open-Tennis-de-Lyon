@@ -4,7 +4,7 @@
  */
 package gestiontournois;
 
-import BaseDeDonnees.ConnectionFactory;
+import BaseDeDonnees.*;
 import java.sql.SQLException;
 
 import java.sql.*;
@@ -21,6 +21,6 @@ public class GestionTournois {
      */
     
     public static void main(String[] args) {
-        
+        ObjectFactory.createJoueur();
     }
 }
