@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package BaseDeDonnees;
+package Tests;
 
 import java.util.ArrayList;
 /**
@@ -17,7 +17,7 @@ public class Joueur {
     String prenom;
     String nationalite;
     static ArrayList<Joueur> listeJoueur=new ArrayList();
-    Joueur(int id, String nom, String prenom, String nationalite){
+    public Joueur(int id, String nom, String prenom, String nationalite){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;

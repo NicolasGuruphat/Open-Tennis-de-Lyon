@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BaseDeDonnees;
+package Tests;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Arbitre {
     String prenom;
     String nationalite;
     static ArrayList<Arbitre> listeArbitre=new ArrayList();
-    Arbitre(int id, String nom, String prenom, String nationalite){
+    public Arbitre(int id, String nom, String prenom, String nationalite){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;

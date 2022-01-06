@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package BaseDeDonnees;
+import Tests.Arbitre;
+import Tests.Joueur;
 import java.util.ArrayList;
 import java.sql.*;
 /**
