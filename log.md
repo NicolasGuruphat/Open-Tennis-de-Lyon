@@ -25,3 +25,17 @@ Liste des classes nécéssaire au programme :
 ### Hugo   
 
 Restructuration de la base de données pour correspondre aux besoin du projet.
+
+## 06/01
+### Nicolas  
+
+Ajout de méthodes à la classe ObjectFactory :
+- createJoueurs : créer les objets Joueur (pour l'instant c'est une classe test en attendant qu'Adrien fasse la vraie classe) à partir de la table de la BDD
+- createArbitres : fait la même chose que la classe précédente pour les arbitres
+
+Merge de la branch BDD->main en attendant les vrais classes Joueur et Arbitre
+
+### Adrien  
+
+
+### Hugo   
