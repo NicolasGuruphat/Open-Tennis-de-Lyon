@@ -16,7 +16,7 @@ public class RamasseurBalle extends Participant {
       // TODO: implement
    }
    
-   public java.util.Collection<Match> estAssigneA;
+   public java.util.Collection<Match> listeMatchs;
    
    public String getClub() {
       return club;
@@ -44,16 +44,16 @@ public class RamasseurBalle extends Participant {
    
    /** @pdGenerated default getter */
    public java.util.Collection<Match> getEstAssigneA() {
-      if (estAssigneA == null)
-         estAssigneA = new java.util.HashSet<Match>();
-      return estAssigneA;
+      if (listeMatchs == null)
+         listeMatchs = new java.util.HashSet<Match>();
+      return listeMatchs;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorEstAssigneA() {
-      if (estAssigneA == null)
-         estAssigneA = new java.util.HashSet<Match>();
-      return estAssigneA.iterator();
+      if (listeMatchs == null)
+         listeMatchs = new java.util.HashSet<Match>();
+      return listeMatchs.iterator();
    }
    
    /** @pdGenerated default setter
@@ -69,10 +69,10 @@ public class RamasseurBalle extends Participant {
    public void addEstAssigneA(Match newMatch) {
       if (newMatch == null)
          return;
-      if (this.estAssigneA == null)
-         this.estAssigneA = new java.util.HashSet<Match>();
-      if (!this.estAssigneA.contains(newMatch))
-         this.estAssigneA.add(newMatch);
+      if (this.listeMatchs == null)
+         this.listeMatchs = new java.util.HashSet<Match>();
+      if (!this.listeMatchs.contains(newMatch))
+         this.listeMatchs.add(newMatch);
    }
    
    /** @pdGenerated default remove
@@ -80,15 +80,15 @@ public class RamasseurBalle extends Participant {
    public void removeEstAssigneA(Match oldMatch) {
       if (oldMatch == null)
          return;
-      if (this.estAssigneA != null)
-         if (this.estAssigneA.contains(oldMatch))
-            this.estAssigneA.remove(oldMatch);
+      if (this.listeMatchs != null)
+         if (this.listeMatchs.contains(oldMatch))
+            this.listeMatchs.remove(oldMatch);
    }
    
    /** @pdGenerated default removeAll */
    public void removeAllEstAssigneA() {
-      if (estAssigneA != null)
-         estAssigneA.clear();
+      if (listeMatchs != null)
+         listeMatchs.clear();
    }
 
 }

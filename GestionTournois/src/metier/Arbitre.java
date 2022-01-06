@@ -10,12 +10,13 @@ import java.util.*;
 
 public class Arbitre extends Participant {
    private int id;
+   private String type;
    
    protected void finalize() {
       // TODO: implement
    }
    
-   public java.util.Collection<Match> arbitre;
+   public java.util.Collection<Match> listeMatchs;
    
    public int getId() {
       return id;
@@ -26,6 +27,15 @@ public class Arbitre extends Participant {
       id = newId;
    }
    
+   public String getType() {
+      return type;
+   }
+   
+   /** @param newId */
+   public void setType(String newType) {
+      type = newType;
+   }
+   
    public Arbitre() {
       // TODO: implement
    }
@@ -33,16 +43,16 @@ public class Arbitre extends Participant {
    
    /** @pdGenerated default getter */
    public java.util.Collection<Match> getArbitre() {
-      if (arbitre == null)
-         arbitre = new java.util.HashSet<Match>();
-      return arbitre;
+      if (listeMatchs == null)
+         listeMatchs = new java.util.HashSet<Match>();
+      return listeMatchs;
    }
    
    /** @pdGenerated default iterator getter */
    public java.util.Iterator getIteratorArbitre() {
-      if (arbitre == null)
-         arbitre = new java.util.HashSet<Match>();
-      return arbitre.iterator();
+      if (listeMatchs == null)
+         listeMatchs = new java.util.HashSet<Match>();
+      return listeMatchs.iterator();
    }
    
    /** @pdGenerated default setter
@@ -58,10 +68,10 @@ public class Arbitre extends Participant {
    public void addArbitre(Match newMatch) {
       if (newMatch == null)
          return;
-      if (this.arbitre == null)
-         this.arbitre = new java.util.HashSet<Match>();
-      if (!this.arbitre.contains(newMatch))
-         this.arbitre.add(newMatch);
+      if (this.listeMatchs == null)
+         this.listeMatchs = new java.util.HashSet<Match>();
+      if (!this.listeMatchs.contains(newMatch))
+         this.listeMatchs.add(newMatch);
    }
    
    /** @pdGenerated default remove
@@ -69,15 +79,15 @@ public class Arbitre extends Participant {
    public void removeArbitre(Match oldMatch) {
       if (oldMatch == null)
          return;
-      if (this.arbitre != null)
-         if (this.arbitre.contains(oldMatch))
-            this.arbitre.remove(oldMatch);
+      if (this.listeMatchs != null)
+         if (this.listeMatchs.contains(oldMatch))
+            this.listeMatchs.remove(oldMatch);
    }
    
    /** @pdGenerated default removeAll */
    public void removeAllArbitre() {
-      if (arbitre != null)
-         arbitre.clear();
+      if (listeMatchs != null)
+         listeMatchs.clear();
    }
 
 }

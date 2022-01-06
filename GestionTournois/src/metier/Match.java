@@ -12,7 +12,7 @@ public class Match {
    private int id;
    private int tour;
    private Dictionary score;
-   private Match[] listeMatch;
+   private static Match match;
    
    protected void finalize() {
       // TODO: implement
@@ -41,9 +41,18 @@ public class Match {
       return id;
    }
    
+   public Match getMatch() {
+       return match;
+   }
+   
    /** @param newId */
    public void setId(int newId) {
       id = newId;
+   }
+   
+   /** @param newMatch */
+   public void setMatch(Match newMatch) {
+      match = newMatch;
    }
    
    public int getTour() {
@@ -66,8 +75,8 @@ public class Match {
    
    /** @param tour 
     * @param score 
-    * @param listeMatch */
-   public Match(int tour, Dictionary score, Match[] listeMatch) {
+    * @param match */
+   public Match(int tour, Dictionary score, Match match) {
       // TODO: implement
    }
    

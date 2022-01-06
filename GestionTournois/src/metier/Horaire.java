@@ -13,13 +13,12 @@ public class Horaire {
    private Date date;
    private Date heureDebut;
    private Date heureFin;
-   private Terrain[] terrainDispo;
+   public java.util.Collection<Terrain> listeTerrainDispo;
    
    protected void finalize() {
       // TODO: implement
    }
-   
-   public java.util.Collection association5;
+
    
    public Date getDate() {
       return date;
@@ -48,13 +47,13 @@ public class Horaire {
       heureFin = newHeureFin;
    }
    
-   public Terrain[] getTerrainDispo() {
-      return terrainDispo;
+   public java.util.Collection<Terrain> getListeTerrainDispo() {
+      return listeTerrainDispo;
    }
    
    /** @param newTerrainDispo */
-   public void setTerrainDispo(Terrain[] newTerrainDispo) {
-      terrainDispo = newTerrainDispo;
+   public void setTerrainDispo(java.util.Collection<Terrain> newListeTerrainDispo) {
+      listeTerrainDispo = newListeTerrainDispo;
    }
    
    /** @param date 
