@@ -13,14 +13,12 @@ public class ObjectFactory {
     
     static Connection connection = ConnectionFactory.createConnection();
     
-    public static void createJoueur()
+    public static void createJoueurs()
     {
         try{
             Statement stm = connection.createStatement();
             ResultSet rslt = stm.executeQuery("select * from joueur"); 
-            System.out.println("début de la boucle");
             while(rslt.next()){
-                System.out.println("tour de boucle");
                 int id=rslt.getInt("ID");
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
@@ -30,6 +28,26 @@ public class ObjectFactory {
         }catch(Exception e){
             System.out.println(e);
         }
-        Joueur.printAll();
+        //Joueur.printAll();
     }
+    
+    public static void createArbitres()
+    {
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rslt = stm.executeQuery("select * from arbitre"); 
+            while(rslt.next()){
+                int id=rslt.getInt("ID");
+                String nom = rslt.getString("Nom");
+                String prenom = rslt.getString("Prenom");
+                String nationalite = rslt.getString("Nationalite");
+                Arbitre arbitre = new Arbitre(id,nom,prenom,nationalite);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        Arbitre.printAll();
+    }
+    
+    
 }
