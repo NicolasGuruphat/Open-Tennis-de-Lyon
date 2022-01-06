@@ -35,6 +35,8 @@ Ajout de méthodes à la classe ObjectFactory :
 
 Merge de la branch BDD->main en attendant les vrais classes Joueur et Arbitre
 
+initialisation de l'interface
+
 ### Adrien  
 
 
