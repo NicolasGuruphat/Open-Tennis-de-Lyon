@@ -16,7 +16,7 @@ public class ConnectionFactory {
         return connection;
     }
 
-    public static void createConnection(){
+    public static Connection createConnection(){
         try{
             connection = DriverManager.getConnection("jdbc:mariadb://iutdoua-web.univ-lyon1.fr/p2003245?user=p2003245&password=564094");
             connection.setAutoCommit(true);
@@ -24,5 +24,6 @@ public class ConnectionFactory {
         catch(Exception e){
             System.out.println(e); 
         }
+        return connection;
     }
 }
