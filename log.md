@@ -39,7 +39,7 @@ initialisation de l'interface
 
 ### Adrien  
 
-Initialisation des classes
+Initialisation des classes  
 Adaptation des associations pour qu'il soit plus orienté programmations
 
 
