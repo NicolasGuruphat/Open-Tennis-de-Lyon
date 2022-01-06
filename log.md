@@ -1,24 +1,27 @@
-<b>04/01</b>    
-  
-Adrien, Nicolas :    
+# Journal de bord
 
-Concernant la base de données, recherche du bon driver JCBD pour MariaDB  
-Plusieurs test d'initialisation de projet on été fait mais sans succès  
+## 04/01
+### Adrien, Nicolas  
 
-Hugo    
+Concernant la base de données, recherche du bon driver JCBD pour MariaDB.  
+Plusieurs test d'initialisation de projet on été fait mais sans succès.  
 
-<b>05/01</b>    
+### Hugo  
 
-Nicolas :  
+Mise en place de la base de données, multiples problème avec PhpMyAdmin et dans la structure de la base de données.  
 
-Bon driver trouvé, initialisation de la branch base de données. Accès réussi à la base de données via Java. Test réussi de requete sur la base de données    
+## 05/01
+### Nicolas  
 
-Adrien    
+Bon driver trouvé, initialisation de la branch base de données. Accès réussi à la base de données via Java. Test réussi de requete sur la base de données.  
 
-Liste des classes nécéssaire au programme    
+### Adrien  
 
--"Liste" des étapes du programmes avec description  
--Description des fonctions importantes  
--Arborescence des conteneurs de l'application (interface)    
+Liste des classes nécéssaire au programme :  
+* "Liste" des étapes du programmes avec description  
+* Description des fonctions importantes  
+* Arborescence des conteneurs de l'application (interface)  
 
-Hugo   
+### Hugo   
+
+Restructuration de la base de données pour correspondre aux besoin du projet.
