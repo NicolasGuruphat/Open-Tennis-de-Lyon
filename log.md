@@ -25,3 +25,4 @@ Liste des classes nécéssaire au programme :
 ### Hugo   
 
 Restructuration de la base de données pour correspondre aux besoin du projet.
+Ajustement de la base de données pour la rendre plus lisible (changement des noms, etc...)
