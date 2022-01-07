@@ -13,7 +13,7 @@ public abstract class Participant {
    protected String nom;
    protected String prenom;
    protected String nationnalite;
-   private int id;
+   protected int id;
    
    
     protected void finalize() {
