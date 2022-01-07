@@ -10,7 +10,8 @@ import java.util.*;
 
 public class Arbitre extends Participant {
     
-   private String type;
+   private String typeArbitre;
+   static ArrayList<Arbitre> listeArbitre=new ArrayList();
    
    protected void finalize() {
       // TODO: implement
@@ -19,19 +20,20 @@ public class Arbitre extends Participant {
    public java.util.Collection<Match> listeMatchs;
    
    
-   public String getType() {
-      return type;
+   public String getTypeArbitre() {
+      return typeArbitre;
    }
    
    /** @param newId */
-   public void setType(String newType) {
-      type = newType;
+   public void setType(String newTypeArbitre) {
+      typeArbitre = newTypeArbitre;
    }
    
-    public Arbitre(int id, String type, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
+    public Arbitre(int id, String typeArbitre, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
         super(id, nom, prenom, nationnalite);
-        this.type = type;
+        this.typeArbitre = typeArbitre;
         this.listeMatchs = listeMatchs;
+        listeArbitre.add(this);
     }
    
    
@@ -83,5 +85,13 @@ public class Arbitre extends Participant {
       if (listeMatchs != null)
          listeMatchs.clear();
    }
+    public static void printAll(){
+        System.out.println("print all");
+        for(Arbitre arbitre : listeArbitre)
+        {
+            System.out.println(arbitre.id);
+        }
+    
+    }
 
 }
