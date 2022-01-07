@@ -52,6 +52,8 @@ Suite et fin de la restructuration de la base de données. Finalisation de la g�
 ### Nicolas
 
 Ajout des éléments à la page de génération de tournois de l'IHM conformement à la maquette  
+Modification légères des classes du package métier pour les adapter à la génération d'objets à partir de la BDD  
+Génération d'objets à partir de la BDD modifiée pour s'adapter aux classes du package métier  
 
 ### Adrien
 ### Hugo
