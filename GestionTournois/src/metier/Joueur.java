@@ -129,5 +129,13 @@ public class Joueur extends Participant {
       if (joueEnMatchSimple != null)
          joueEnMatchSimple.clear();
    }
+    public static void printAll(){
+        System.out.println("print all");
+        for(Joueur joueur : listeJoueur)
+        {
+            System.out.println(joueur.id);
+        }
+        
+    }
 
 }
