@@ -50,6 +50,9 @@ Suite et fin de la restructuration de la base de données. Finalisation de la g�
 
 ## 07/01
 ### Nicolas
+
+Ajout des éléments à la page de génération de tournois de l'IHM conformement à la maquette  
+
 ### Adrien
 ### Hugo
 
