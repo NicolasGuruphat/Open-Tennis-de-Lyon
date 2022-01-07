@@ -9,7 +9,7 @@ package metier;
 import java.util.*;
 
 public class RamasseurBalle extends Participant {
-   private int id;
+   
    private String club;
    
    protected void finalize() {
@@ -28,19 +28,11 @@ public class RamasseurBalle extends Participant {
    }
    
    /** @param club */
-   public RamasseurBalle(String club) {
-      // TODO: implement
-   }
-   
-   public int getId() {
-      return id;
-   }
-   
-   /** @param newId */
-   public void setId(int newId) {
-      id = newId;
-   }
-   
+    public RamasseurBalle(String club, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
+        super(nom, prenom, nationnalite);
+        this.club = club;
+        this.listeMatchs = listeMatchs;
+    }
    
    /** @pdGenerated default getter */
    public java.util.Collection<Match> getEstAssigneA() {
