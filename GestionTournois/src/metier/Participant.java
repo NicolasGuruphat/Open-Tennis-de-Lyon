@@ -56,10 +56,11 @@ public abstract class Participant {
       nationnalite = newNationnalite;
    }
    
-   public Participant(String nom, String prenom, String nationnalite) {
+   public Participant(int id, String nom, String prenom, String nationnalite) {
         this.nom = nom;
         this.prenom = prenom;
         this.nationnalite = nationnalite;
+        this.id=id;
     }
 
 }

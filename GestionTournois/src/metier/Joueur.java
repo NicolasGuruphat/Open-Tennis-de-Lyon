@@ -25,8 +25,8 @@ public class Joueur extends Participant {
       // TODO: implement
    }
    
-       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple, String nom, String prenom, String nationnalite) {
-        super(nom, prenom, nationnalite);
+       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple,int id, String nom, String prenom, String nationnalite) {
+        super(id,nom, prenom, nationnalite);
         this.joueEnMatchDouble = joueEnMatchDouble;
         this.joueEnMatchSimple = joueEnMatchSimple;
     }

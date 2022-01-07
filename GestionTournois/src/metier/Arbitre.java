@@ -28,8 +28,8 @@ public class Arbitre extends Participant {
       type = newType;
    }
    
-    public Arbitre(String type, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
-        super(nom, prenom, nationnalite);
+    public Arbitre(int id, String type, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
+        super(id, nom, prenom, nationnalite);
         this.type = type;
         this.listeMatchs = listeMatchs;
     }
