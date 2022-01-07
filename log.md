@@ -56,4 +56,5 @@ Ajout des éléments à la page de génération de tournois de l'IHM conformemen
 ### Adrien
 ### Hugo
 
-Validation de jeux de données et tests de la base de données.
+Validation de jeux de données et tests de la base de données.  
+Début de travail sur la partie IHM.
