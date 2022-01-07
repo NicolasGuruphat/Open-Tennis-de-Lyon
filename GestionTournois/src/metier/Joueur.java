@@ -9,7 +9,6 @@ package metier;
 import java.util.*;
 
 public class Joueur extends Participant {
-   private int id;
    
    protected void finalize() {
       // TODO: implement
@@ -26,18 +25,11 @@ public class Joueur extends Participant {
       // TODO: implement
    }
    
-   public int getId() {
-      return id;
-   }
-   
-   /** @param newId */
-   public void setId(int newId) {
-      id = newId;
-   }
-   
-   public Joueur() {
-      // TODO: implement
-   }
+       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple, String nom, String prenom, String nationnalite) {
+        super(nom, prenom, nationnalite);
+        this.joueEnMatchDouble = joueEnMatchDouble;
+        this.joueEnMatchSimple = joueEnMatchSimple;
+    }
    
    
    /** @pdGenerated default getter */
