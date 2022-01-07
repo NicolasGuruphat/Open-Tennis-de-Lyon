@@ -9,7 +9,7 @@ package metier;
 import java.util.*;
 
 public class Arbitre extends Participant {
-   private int id;
+    
    private String type;
    
    protected void finalize() {
@@ -18,14 +18,6 @@ public class Arbitre extends Participant {
    
    public java.util.Collection<Match> listeMatchs;
    
-   public int getId() {
-      return id;
-   }
-   
-   /** @param newId */
-   public void setId(int newId) {
-      id = newId;
-   }
    
    public String getType() {
       return type;
@@ -36,20 +28,22 @@ public class Arbitre extends Participant {
       type = newType;
    }
    
-   public Arbitre() {
-      // TODO: implement
-   }
+    public Arbitre(String type, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
+        super(nom, prenom, nationnalite);
+        this.type = type;
+        this.listeMatchs = listeMatchs;
+    }
    
    
    /** @pdGenerated default getter */
-   public java.util.Collection<Match> getArbitre() {
+   public java.util.Collection<Match> getListeMatchs() {
       if (listeMatchs == null)
          listeMatchs = new java.util.HashSet<Match>();
       return listeMatchs;
    }
    
    /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorArbitre() {
+   public java.util.Iterator getIteratorListeMatchs() {
       if (listeMatchs == null)
          listeMatchs = new java.util.HashSet<Match>();
       return listeMatchs.iterator();
@@ -57,15 +51,15 @@ public class Arbitre extends Participant {
    
    /** @pdGenerated default setter
      * @param newArbitre */
-   public void setArbitre(java.util.Collection<Match> newArbitre) {
-      removeAllArbitre();
-      for (java.util.Iterator iter = newArbitre.iterator(); iter.hasNext();)
-         addArbitre((Match)iter.next());
+   public void setListeMatchs(java.util.Collection<Match> newListeMatchs) {
+      removeAllMatch();
+      for (java.util.Iterator iter = newListeMatchs.iterator(); iter.hasNext();)
+         addMatch((Match)iter.next());
    }
    
    /** @pdGenerated default add
      * @param newMatch */
-   public void addArbitre(Match newMatch) {
+   public void addMatch(Match newMatch) {
       if (newMatch == null)
          return;
       if (this.listeMatchs == null)
@@ -76,7 +70,7 @@ public class Arbitre extends Participant {
    
    /** @pdGenerated default remove
      * @param oldMatch */
-   public void removeArbitre(Match oldMatch) {
+   public void removeMatch(Match oldMatch) {
       if (oldMatch == null)
          return;
       if (this.listeMatchs != null)
@@ -85,7 +79,7 @@ public class Arbitre extends Participant {
    }
    
    /** @pdGenerated default removeAll */
-   public void removeAllArbitre() {
+   public void removeAllMatch() {
       if (listeMatchs != null)
          listeMatchs.clear();
    }

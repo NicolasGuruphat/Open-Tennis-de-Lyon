@@ -76,9 +76,13 @@ public class Match {
    /** @param tour 
     * @param score 
     * @param match */
-   public Match(int tour, Dictionary score, Match match) {
-      // TODO: implement
-   }
+    public Match(int id, int tour, Dictionary score, Collection<Match> fils) {
+        this.id = id;
+        this.tour = tour;
+        this.score = score;
+        this.fils = fils;
+    }
+   
    
    public static void genererArbre() {
       // TODO: implement

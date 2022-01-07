@@ -9,12 +9,24 @@ package metier;
 import java.util.*;
 
 public abstract class Participant {
+
    protected String nom;
    protected String prenom;
    protected String nationnalite;
+   private int id;
    
-   protected void finalize() {
-      // TODO: implement
+   
+    protected void finalize() {
+       // TODO: implement
+    }
+   
+   public int getId() {
+      return id;
+   }
+   
+   /** @param newId */
+   public void setId(int newId) {
+      id = newId;
    }
    
    public String getNom() {
@@ -44,8 +56,10 @@ public abstract class Participant {
       nationnalite = newNationnalite;
    }
    
-   public Participant() {
-      // TODO: implement
-   }
+   public Participant(String nom, String prenom, String nationnalite) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.nationnalite = nationnalite;
+    }
 
 }

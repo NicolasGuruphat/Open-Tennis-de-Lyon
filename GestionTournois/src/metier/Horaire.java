@@ -60,9 +60,15 @@ public class Horaire {
     * @param heureDebut 
     * @param heureFin 
     * @param terrainDispo */
-   public Horaire(Date date, Date heureDebut, Date heureFin, Terrain[] terrainDispo) {
-      // TODO: implement
-   }
+   
+
+    public Horaire(int id, Date date, Date heureDebut, Date heureFin, Collection<Terrain> listeTerrainDispo) {
+        this.id = id;
+        this.date = date;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.listeTerrainDispo = listeTerrainDispo;
+    }
    
    public int getId() {
       return id;
