@@ -4,7 +4,7 @@
  */
 package BaseDeDonnees;
 
-import Tests.Arbitre;
+import metier.Arbitre;
 import metier.Joueur;
 import java.util.ArrayList;
 import java.sql.*;
@@ -44,7 +44,8 @@ public class ObjectFactory {
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
-                Arbitre arbitre = new Arbitre(id,nom,prenom,nationalite);
+                String typeArbitre = rslt.getString("typeArbitre");
+                Arbitre arbitre = new Arbitre(id,typeArbitre,null,nom,prenom,nationalite);
             }
         }catch(Exception e){
             System.out.println(e);
