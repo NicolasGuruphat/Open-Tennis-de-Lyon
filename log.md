@@ -53,4 +53,4 @@ Suite et fin de la restructuration de la base de données. Finalisation de la g�
 ### Adrien
 ### Hugo
 
-Test de la base de données.
+Validation de jeux de données et tests de la base de données.
