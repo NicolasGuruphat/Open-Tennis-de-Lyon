@@ -4,7 +4,8 @@
  */
 package BaseDeDonnees;
 
-import Tests.*;
+import Tests.Arbitre;
+import metier.Joueur;
 import java.util.ArrayList;
 import java.sql.*;
 /**
@@ -25,7 +26,7 @@ public class ObjectFactory {
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
-                Joueur joueur = new Joueur(id,nom,prenom,nationalite);
+                Joueur joueur = new Joueur(null, null, id,nom,prenom,nationalite);
             }
         }catch(Exception e){
             System.out.println(e);
