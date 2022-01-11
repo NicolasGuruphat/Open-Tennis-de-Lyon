@@ -89,5 +89,5 @@ Début de la création de l'application web :
 ### Adrien  
 
 ### Hugo  
-
+Suite de l'implémentation de l'IHM, tentative de résolution de certains problèmes.
 
