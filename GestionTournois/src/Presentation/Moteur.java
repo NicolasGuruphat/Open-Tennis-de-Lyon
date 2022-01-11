@@ -12,34 +12,21 @@ import javax.swing.AbstractAction;
  *
  * @author p2007545
  */
-public class Moteur extends AbstractAction {
+public class Moteur {
     
     IHM fenetre;
-    public Moteur(String texte, IHM fenetre){
-    super(texte);
+    public Moteur(IHM fenetre){
+    super();
     this.fenetre = fenetre;
     
     }
+ 
     
-     @Override
-    public void actionPerformed(ActionEvent event){
-        
-        if (event.getSource() == fenetre.getjToggleButton1())
-        {
-		
-        }
-        
-        else if (event.getSource() == fenetre.getjToggleButton2())
-        {
-
-        }
-        
-        else if (event.getSource() == fenetre.getjToggleButton3())
-        {
-       
-        }
-        
-
-    }
+    public void afficherPrint(String test)
+            {
+                
+            System.out.println(test);
+            
+            }
         
 }

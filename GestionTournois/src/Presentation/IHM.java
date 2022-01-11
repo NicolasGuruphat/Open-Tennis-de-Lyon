@@ -16,12 +16,16 @@ import javax.swing.JToggleButton;
  * @author nicog
  */
 public class IHM extends javax.swing.JFrame {
+    
+    Moteur moteur;
 
     /**
      * Creates new form IHM
      */
     public IHM() {
         initComponents();
+        moteur = new Moteur(this);
+        
     }
 
     /**
@@ -74,8 +78,18 @@ public class IHM extends javax.swing.JFrame {
         jLabel5.setText("Tournois double");
 
         jToggleButton1.setText("Générer arbre");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setText("Générer arbre");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         jToggleButton3.setText("Générer arbre");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +99,11 @@ public class IHM extends javax.swing.JFrame {
         });
 
         jButton1.setText("Valider ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Aucun événement planifié");
 
@@ -169,15 +188,46 @@ public class IHM extends javax.swing.JFrame {
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
+        
+        
+                  
+        System.out.println("test1");
+        
+        
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
         // TODO add your handling code here:
+        
+
+
     }//GEN-LAST:event_jFormattedTextField2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
+        
+        moteur.afficherPrint("test3");
+       
+        
     }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        moteur.afficherPrint("test2");
+       
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        moteur.afficherPrint("test1");
+       
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,5 +335,13 @@ public class IHM extends javax.swing.JFrame {
     public JToggleButton getjToggleButton3() {
         return jToggleButton3;
     }
+    
+    
+    public void actionPerformed (ActionEvent event){
+        //System.out.print(event.getSource());
+
+
+    }
+    
     
 }
