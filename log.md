@@ -75,5 +75,6 @@ Modification de plusieurs classes métier afin d'ajouter des listes static
 
 ### Adrien  
 
-### Hugo
+### Hugo  
+Suite de l'implémentation de l'IHM.
 
