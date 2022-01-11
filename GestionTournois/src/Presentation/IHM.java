@@ -215,7 +215,7 @@ public class IHM extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -235,10 +235,12 @@ public class IHM extends javax.swing.JFrame {
     public JButton getjButton1() {
         return jButton1;
     }
-
+    
+    
     public JFormattedTextField getjFormattedTextField1() {
         return jFormattedTextField1;
     }
+
 
     public JFormattedTextField getjFormattedTextField2() {
         return jFormattedTextField2;
@@ -285,5 +287,3 @@ public class IHM extends javax.swing.JFrame {
     }
     
 }
-
-

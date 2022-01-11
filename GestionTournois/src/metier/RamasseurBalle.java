@@ -28,8 +28,8 @@ public class RamasseurBalle extends Participant {
    }
    
    /** @param club */
-    public RamasseurBalle(String club, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
-        super(nom, prenom, nationnalite);
+    public RamasseurBalle(int id,String club, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
+        super(id, nom, prenom, nationnalite);
         this.club = club;
         this.listeMatchs = listeMatchs;
     }
