@@ -71,5 +71,3 @@ Il faudra  adapter la BDD afin que la gagnant soit stocké dans la table match
 ### Adrien
 ### Hugo
 
-Validation de jeux de données et tests de la base de données.
-Début de travail sur la partie IHM.
