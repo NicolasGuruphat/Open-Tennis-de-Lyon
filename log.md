@@ -64,9 +64,9 @@ Début de travail sur la partie IHM.
 ## 11/01
 ### Nicolas
 
-Ajout de la méthode createMatch qui permet de créer les objets match à partir de la BDD
-Conversion du score en Map (dictionnaire). 
-Il faudra  adapter la BDD afin que la gagnant soit stocké dans la table match
+Ajout de la méthode createMatch qui permet de créer les objets match à partir de la BDD  
+Conversion du score en Map (dictionnaire).   
+Il faudra  adapter la BDD afin que la gagnant soit stocké dans la table match   
 
 ### Adrien
 ### Hugo
