@@ -28,5 +28,12 @@ public class Moteur {
             System.out.println(test);
             
             }
+    
+    public void genererArbre(String typeMatch)
+    {
+    
+    
+    
+    }
         
 }

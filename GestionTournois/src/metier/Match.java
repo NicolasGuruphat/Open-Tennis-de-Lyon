@@ -88,7 +88,13 @@ public class Match {
    
    public static void genererArbre() {
       // TODO: implement
-   }
+      
+        for( int i=0;i< 6;i++)
+        {
+            new Match(i, 1, null, null);
+        }
+          
+      }
    
    
    /** @pdGenerated default getter */
