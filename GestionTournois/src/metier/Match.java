@@ -11,7 +11,7 @@ import java.util.*;
 public class Match {
    private int id;
    private int tour;
-   private Dictionary score;
+   private Map<Integer,Integer> score;
    private static Match match;
    
    protected void finalize() {
@@ -64,19 +64,19 @@ public class Match {
       tour = newTour;
    }
    
-   public Dictionary getScore() {
+   public Map<Integer,Integer> getScore() {
       return score;
    }
    
    /** @param newScore */
-   public void setScore(Dictionary newScore) {
+   public void setScore(Map<Integer,Integer> newScore) {
       score = newScore;
    }
    
    /** @param tour 
     * @param score 
     * @param match */
-    public Match(int id, int tour, Dictionary score, Collection<Match> fils) {
+    public Match(int id, int tour, Map<Integer,Integer> score, Collection<Match> fils) {
         this.id = id;
         this.tour = tour;
         this.score = score;
