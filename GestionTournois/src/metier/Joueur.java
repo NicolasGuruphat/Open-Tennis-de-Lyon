@@ -13,7 +13,7 @@ public class Joueur extends Participant {
    protected void finalize() {
       // TODO: implement
    }
-   static ArrayList<Joueur> listeJoueur=new ArrayList();
+   private static ArrayList<Joueur> listeJoueur=new ArrayList();
    public java.util.Collection<Match> joueEnMatchDouble;
    public java.util.Collection<Match> joueEnMatchSimple;
    
