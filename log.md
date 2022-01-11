@@ -59,3 +59,4 @@ Génération d'objets à partir de la BDD modifiée pour s'adapter aux classes d
 ### Hugo
 
 Validation de jeux de données et tests de la base de données.
+Début de travail sur la partie IHM.
