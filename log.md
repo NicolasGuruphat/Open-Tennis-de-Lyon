@@ -78,3 +78,16 @@ Modification de plusieurs classes métier afin d'ajouter des listes static
 ### Hugo  
 Suite de l'implémentation de l'IHM.
 
+## 11/01 (séance de l'après midi)
+### Nicolas
+
+Début de la création de l'application web :   
+- Les données sont récupérées depuis la BDD  
+- La liste des fiches vip s'affiche sur une première page  
+- Lorsqu'on click sur un nom, l'id est passer en GET et est récupérer. Plus tard, cela permettra d'afficher sa fiche en faisant une nouvelle requete dans la BDD  
+
+### Adrien  
+
+### Hugo  
+
+
