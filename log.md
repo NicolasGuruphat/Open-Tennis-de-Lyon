@@ -55,7 +55,26 @@ Ajout des éléments à la page de génération de tournois de l'IHM conformemen
 Modification légères des classes du package métier pour les adapter à la génération d'objets à partir de la BDD  
 Génération d'objets à partir de la BDD modifiée pour s'adapter aux classes du package métier  
 
-### Adrien
+### Adrien  
+Création de moteur.java  
+Ajouts des getters des conteneurs  
+Début d'ajout des écouteurs dans moteur.java  
+
 ### Hugo
 
 Validation de jeux de données et tests de la base de données.
+Début de travail sur la partie IHM.
+
+## 11/01 (séance du matin)
+### Nicolas
+
+Ajout de la méthode createMatch qui permet de créer les objets match à partir de la BDD  
+Conversion du score en Map (dictionnaire).   
+Il faudra  adapter la BDD afin que la gagnant soit stocké dans la table match   
+Modification de plusieurs classes métier afin d'ajouter des listes static
+
+### Adrien  
+
+### Hugo  
+Suite de l'implémentation de l'IHM.
+

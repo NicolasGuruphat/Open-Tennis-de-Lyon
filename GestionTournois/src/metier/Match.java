@@ -7,13 +7,14 @@
 package metier;
 
 import java.util.*;
+import java.util.*;
 
 public class Match {
    private int id;
    private int tour;
    private Map<Integer,Integer> score;
    private static Match match;
-   
+   private static ArrayList<Match> listeMatch = new ArrayList();
    protected void finalize() {
       // TODO: implement
    }
@@ -81,6 +82,7 @@ public class Match {
         this.tour = tour;
         this.score = score;
         this.fils = fils;
+        listeMatch.add(this);
     }
    
    
