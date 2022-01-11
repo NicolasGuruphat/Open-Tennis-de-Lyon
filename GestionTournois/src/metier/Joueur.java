@@ -13,7 +13,7 @@ public class Joueur extends Participant {
    protected void finalize() {
       // TODO: implement
    }
-   
+   static ArrayList<Joueur> listeJoueur=new ArrayList();
    public java.util.Collection<Match> joueEnMatchDouble;
    public java.util.Collection<Match> joueEnMatchSimple;
    
@@ -25,10 +25,11 @@ public class Joueur extends Participant {
       // TODO: implement
    }
    
-       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple, String nom, String prenom, String nationnalite) {
-        super(nom, prenom, nationnalite);
+       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple,int id, String nom, String prenom, String nationnalite) {
+        super(id,nom, prenom, nationnalite);
         this.joueEnMatchDouble = joueEnMatchDouble;
         this.joueEnMatchSimple = joueEnMatchSimple;
+        listeJoueur.add(this);
     }
    
    
@@ -128,5 +129,13 @@ public class Joueur extends Participant {
       if (joueEnMatchSimple != null)
          joueEnMatchSimple.clear();
    }
+    public static void printAll(){
+        System.out.println("print all");
+        for(Joueur joueur : listeJoueur)
+        {
+            System.out.println(joueur.id);
+        }
+        
+    }
 
 }
