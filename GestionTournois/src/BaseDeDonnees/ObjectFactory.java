@@ -53,7 +53,7 @@ public class ObjectFactory {
         }
         Arbitre.printAll();
     }
-    public static void createMatch()
+    public static void createMatchs()
     {
         int idJoueur;
         try{
