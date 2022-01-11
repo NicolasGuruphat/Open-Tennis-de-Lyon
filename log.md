@@ -75,6 +75,8 @@ Modification de plusieurs classes métier afin d'ajouter des listes static
 
 ### Adrien  
 
+Rencontré des dificultés avec git (problème de push et de branches)
+
 ### Hugo  
 Suite de l'implémentation de l'IHM.
 
@@ -87,6 +89,9 @@ Début de la création de l'application web :
 - Lorsqu'on click sur un nom, l'id est passer en GET et est récupérer. Plus tard, cela permettra d'afficher sa fiche en faisant une nouvelle requete dans la BDD  
 
 ### Adrien  
+
+Ecouteurs fonctionnelles dans moteurs (test des écouteurs valide)  
+Debut de la méthode générerMatchs()  
 
 ### Hugo  
 Suite de l'implémentation de l'IHM, tentative de résolution de certains problèmes.
