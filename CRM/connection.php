@@ -1,5 +1,6 @@
 <?php
 class Connection {
+        
         private static $bdd;
         static function connectDb(){
                 $host = 'localhost'; // ou sql.hebergeur.com

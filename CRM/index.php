@@ -1,9 +1,8 @@
 <?php
 include 'connection.php';
- 
-$connection = new connection();
-$connection->ConnectDb();
-$bdd=$connection->getBDD();
+
+Connection::ConnectDb();
+$bdd=Connection::getBDD();
 $query = $bdd->prepare('SELECT nom,idFiche FROM fichevip');
 $query->execute();
 while ($data = $query->fetch())  
