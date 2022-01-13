@@ -104,3 +104,10 @@ Suite de la création de l'application web :
 - Mise en place d'un template pour la fiche
 - Début du visuel   
 - Début du form qui permet d'ajouter des interactions dans les fiches
+
+### Adrien
+
+-Ajout des associations listeTerrain, listeHorraire, terrain, horraire dans Matchs
+-Supprésion des autre associations entre les classes horraire, terrain et matchs
+-Suppresion de l'interface terrain, remplacée par une classe terrain
+-Ajout et suppression des getters et setter liés attribut ajouté/supprimé
