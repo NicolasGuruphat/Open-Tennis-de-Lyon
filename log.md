@@ -52,8 +52,47 @@ Suite et fin de la restructuration de la base de données. Finalisation de la g�
 ### Nicolas
 
 Ajout des éléments à la page de génération de tournois de l'IHM conformement à la maquette  
+Modification légères des classes du package métier pour les adapter à la génération d'objets à partir de la BDD  
+Génération d'objets à partir de la BDD modifiée pour s'adapter aux classes du package métier  
 
-### Adrien
+### Adrien  
+Création de moteur.java  
+Ajouts des getters des conteneurs  
+Début d'ajout des écouteurs dans moteur.java  
+
 ### Hugo
 
-Validation de jeux de données et tests de la base de données.  
+Validation de jeux de données et tests de la base de données.
+Début de travail sur la partie IHM.
+
+## 11/01 (séance du matin)
+### Nicolas
+
+Ajout de la méthode createMatch qui permet de créer les objets match à partir de la BDD  
+Conversion du score en Map (dictionnaire).   
+Il faudra  adapter la BDD afin que la gagnant soit stocké dans la table match   
+Modification de plusieurs classes métier afin d'ajouter des listes static
+
+### Adrien  
+
+Rencontré des dificultés avec git (problème de push et de branches)
+
+### Hugo  
+Suite de l'implémentation de l'IHM.
+
+## 11/01 (séance de l'après midi)
+### Nicolas
+
+Début de la création de l'application web :   
+- Les données sont récupérées depuis la BDD  
+- La liste des fiches vip s'affiche sur une première page  
+- Lorsqu'on click sur un nom, l'id est passer en GET et est récupérer. Plus tard, cela permettra d'afficher sa fiche en faisant une nouvelle requete dans la BDD  
+
+### Adrien  
+
+Ecouteurs fonctionnelles dans moteurs (test des écouteurs valide)  
+Debut de la méthode générerMatchs()  
+
+### Hugo  
+Suite de l'implémentation de l'IHM, tentative de résolution de certains problèmes.
+

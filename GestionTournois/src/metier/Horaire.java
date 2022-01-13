@@ -14,7 +14,7 @@ public class Horaire {
    private Date heureDebut;
    private Date heureFin;
    public java.util.Collection<Terrain> listeTerrainDispo;
-   
+   private static ArrayList<Horaire> listeHoraire=new ArrayList();
    protected void finalize() {
       // TODO: implement
    }
@@ -68,6 +68,7 @@ public class Horaire {
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.listeTerrainDispo = listeTerrainDispo;
+        listeHoraire.add(this);
     }
    
    public int getId() {
