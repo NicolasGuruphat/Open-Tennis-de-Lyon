@@ -103,4 +103,4 @@ Suite de la création de l'application web :
 - Finalisation des accès à la BDD dans fiche.php : maintenant les informations du VIP s'affichent sur une autre page, la page fiche
 - Mise en place d'un template pour la fiche
 - Début du visuel   
-- Début du form qui permet d'ajouter des interactions mais beaucoup de problèmes pour le moment  
+- Début du form qui permet d'ajouter des interactions dans les fiches
