@@ -13,12 +13,37 @@ public class Horaire {
    private Date date;
    private Date heureDebut;
    private Date heureFin;
-   public java.util.Collection<Terrain> listeTerrainDispo;
    private static ArrayList<Horaire> listeHoraire=new ArrayList();
+
    protected void finalize() {
       // TODO: implement
    }
 
+   
+   
+   
+   /** @param date 
+    * @param heureDebut 
+    * @param heureFin 
+    * @param terrainDispo */
+   
+
+    public Horaire(int id, Date date, Date heureDebut, Date heureFin) {
+        this.id = id;
+        this.date = date;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        listeHoraire.add(this);
+    }
+   
+   public int getId() {
+      return id;
+   }
+   
+   /** @param newId */
+   public void setId(int newId) {
+      id = newId;
+   }
    
    public Date getDate() {
       return date;
@@ -47,37 +72,13 @@ public class Horaire {
       heureFin = newHeureFin;
    }
    
-   public java.util.Collection<Terrain> getListeTerrainDispo() {
-      return listeTerrainDispo;
-   }
    
-   /** @param newTerrainDispo */
-   public void setTerrainDispo(java.util.Collection<Terrain> newListeTerrainDispo) {
-      listeTerrainDispo = newListeTerrainDispo;
-   }
-   
-   /** @param date 
-    * @param heureDebut 
-    * @param heureFin 
-    * @param terrainDispo */
-   
+   public static ArrayList<Horaire> getListeHoraire() {
+        return listeHoraire;
+    }
 
-    public Horaire(int id, Date date, Date heureDebut, Date heureFin, Collection<Terrain> listeTerrainDispo) {
-        this.id = id;
-        this.date = date;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.listeTerrainDispo = listeTerrainDispo;
-        listeHoraire.add(this);
+    public static void setListeHoraire(ArrayList<Horaire> listeHoraire) {
+        Horaire.listeHoraire = listeHoraire;
     }
    
-   public int getId() {
-      return id;
-   }
-   
-   /** @param newId */
-   public void setId(int newId) {
-      id = newId;
-   }
-
 }

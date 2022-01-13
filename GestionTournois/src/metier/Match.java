@@ -13,13 +13,18 @@ public class Match {
    private int id;
    private int tour;
    private Map<Integer,Integer> score;
-   private static Match match;
+   private Match fils;
+   
+   
    private static ArrayList<Match> listeMatch = new ArrayList();
+   
+   private static ArrayList<Horaire> listeHorraire = Horaire.getListeHoraire();
+   private static ArrayList<Terrain> listeTerrain = Terrain.getListeTerrain();
+  
+   
    protected void finalize() {
       // TODO: implement
    }
-   
-   public java.util.Collection<Match> fils;
    
    public void modifier() {
       // TODO: implement
@@ -42,19 +47,12 @@ public class Match {
       return id;
    }
    
-   public Match getMatch() {
-       return match;
-   }
    
    /** @param newId */
    public void setId(int newId) {
       id = newId;
    }
    
-   /** @param newMatch */
-   public void setMatch(Match newMatch) {
-      match = newMatch;
-   }
    
    public int getTour() {
       return tour;
@@ -77,7 +75,7 @@ public class Match {
    /** @param tour 
     * @param score 
     * @param match */
-    public Match(int id, int tour, Map<Integer,Integer> score, Collection<Match> fils) {
+    public Match(int id, int tour, Map<Integer,Integer> score, Match fils) {
         this.id = id;
         this.tour = tour;
         this.score = score;
@@ -88,56 +86,12 @@ public class Match {
    
    public static void genererArbre() {
       // TODO: implement
-   }
-   
-   
-   /** @pdGenerated default getter */
-   public java.util.Collection<Match> getFils() {
-      if (fils == null)
-         fils = new java.util.HashSet<Match>();
-      return fils;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorFils() {
-      if (fils == null)
-         fils = new java.util.HashSet<Match>();
-      return fils.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newFils */
-   public void setFils(java.util.Collection<Match> newFils) {
-      removeAllFils();
-      for (java.util.Iterator iter = newFils.iterator(); iter.hasNext();)
-         addFils((Match)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newMatch */
-   public void addFils(Match newMatch) {
-      if (newMatch == null)
-         return;
-      if (this.fils == null)
-         this.fils = new java.util.HashSet<Match>();
-      if (!this.fils.contains(newMatch))
-         this.fils.add(newMatch);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldMatch */
-   public void removeFils(Match oldMatch) {
-      if (oldMatch == null)
-         return;
-      if (this.fils != null)
-         if (this.fils.contains(oldMatch))
-            this.fils.remove(oldMatch);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllFils() {
-      if (fils != null)
-         fils.clear();
-   }
+      
+        for( int i=0;i< 6;i++)
+        {
+            new Match(i, 1, null, null);
+        }
+          
+      }
 
 }
