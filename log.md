@@ -99,7 +99,8 @@ Suite de l'implémentation de l'IHM, tentative de résolution de certains probl�
 ## 13/01 
 ### Nicolas
 
-- Finalisation des accès à la BDD dans fiche.php  
-- Mise en place d'un template pour la fiched  
+Suite de la création de l'application web :
+- Finalisation des accès à la BDD dans fiche.php : maintenant les informations du VIP s'affichent sur une autre page, la page fiche
+- Mise en place d'un template pour la fiche
 - Début du visuel   
 - Début du form qui permet d'ajouter des interactions mais beaucoup de problèmes pour le moment  
