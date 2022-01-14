@@ -3,11 +3,13 @@
 <?php ob_start(); ?>
 <?php
 include('connection.php');
+
+Connection::ConnectDb();
+$bdd=Connection::getBDD();
+$id=null;
 if(isset($_GET['id']))
 {
-	Connection::ConnectDb();
 	$id=$_GET['id'];
-	$bdd=Connection::getBDD();
 	$query = $bdd->prepare("SELECT * FROM fichevip where idFiche = $id");
 	$query->execute();
 	$data = $query->fetch();
@@ -17,14 +19,37 @@ if(isset($_GET['id']))
 	echo "</br>";
 	echo "Prénom : ".$data['2'];
 	echo "</br>";
-	echo "Date de naissance : ".$data['3'];
+	echo "Date de naissance : ".$data['3'];	
+
+	if(isset($_POST['objet']) and isset($_POST['description'])){
+		$titre=$_POST['objet'];
+		$description=$_POST['description'];
+		echo "<p style='color:green'>votre interaction a été ajoutée avec succès</p>";
+		$query = $bdd->prepare("INSERT INTO interaction (idFiche,idInteraction, titre, contenu, date) VALUES (?,?,?,?,?)");
+		$query->execute(array($id,100,$titre,$description,date("Y-m-d")));		
+	}
+
+	$query = $bdd->prepare("SELECT * FROM interaction where idFiche = $id");
+	$query->execute();
 	
-}
-else
-{
-	echo "<h1>ID non défini</h1>";
-}
+	echo "</br>Interactions :";
+	while ($data = $query->fetch())  
+		{
+			echo "</br>";
+			echo "<div style=\"background-color: yellow\">";
+			$titre = $data['2'];
+			$contenu= $data['3'];
+			
+			echo $titre;
+			echo "</br>";
+			echo $contenu;
+			echo "</br>";
+			echo "</div>";
+		}
+}	
 ?>
+
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
