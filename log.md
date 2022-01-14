@@ -117,3 +117,15 @@ Suite de la création de l'application web :
 - Résolution des problèmes lié à l'interface de l'arbre de matchs.
 - Aide à la résolution de problèmes liés aux associations dans la base de données.
 
+## 14/01
+### Nicolas
+
+Fin du form d'ajout d'interactions:
+- Les données du form sont envoyées à la base de données
+
+Les données sont également récupérées pour afficher les interactions liées à la fiche
+
+Début du système d'authentification :
+- Mise en place du form de login
+
+
