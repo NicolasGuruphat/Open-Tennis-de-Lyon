@@ -2,6 +2,7 @@
 include 'connection.php';
 if(isset($_COOKIE["token"])){
     if($_COOKIE["token"]){
+        echo "<a href=\"unlog.php\">Déconnexion</a>";
         Connection::ConnectDb();
         $bdd=Connection::getBDD();
         $query = $bdd->prepare('SELECT nom,prenom,idFiche FROM fichevip');
