@@ -132,6 +132,9 @@ Début du système d'authentification :
   
 -Création des constructeurs a partir de la base de données (Joueur, Arbitres, Matchs, Terrain)  
 -Début du constructeur horaire  
+
 ## 18/01 (séance en autonomie de 2 heures)
 ### Nicolas
+-Fin du système d'authentification : accès à la page de liste des VIP. Utilisation de l'algo de hashage sha512 afin de stocker le mdp de manière sécurisé. Lors de l'authentification, l'input est hashé pour effectuer la correspondance  
+
 
