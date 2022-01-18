@@ -6,7 +6,7 @@ if(isset($_POST["utilisateur"]) and isset($_POST["motDePasse"])){
     $bdd=Connection::getBDD();
     $utilisateur =$_POST["utilisateur"];
     $mdp = $_POST["motDePasse"];
-    $query = $bdd->prepare("SELECT * FROM user WHERE username=?");
+    $query = $bdd->prepare("SELECT * FROM User WHERE username=?");
     $query->bindParam(1,$utilisateur);
     $query->execute();
     $data = $query->fetch();

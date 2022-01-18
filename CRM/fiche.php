@@ -33,7 +33,7 @@
 			if(isset($_GET['id']))
 			{
 				$id=$_GET['id'];
-				$query = $bdd->prepare("SELECT * FROM fichevip where idFiche = $id");
+				$query = $bdd->prepare("SELECT * FROM FicheVIP where idFiche = $id");
 				$query->execute();
 				$data = $query->fetch();
 				echo "Identifiant : ".$data['0'];
@@ -52,7 +52,7 @@
 					$query->execute(array($id,100,$titre,$description,date("Y-m-d")));		
 				}
 
-				$query = $bdd->prepare("SELECT * FROM interaction where idFiche = $id");
+				$query = $bdd->prepare("SELECT * FROM Interaction where idFiche = $id");
 				$query->execute();
 				
 				echo "</br>Interactions :";

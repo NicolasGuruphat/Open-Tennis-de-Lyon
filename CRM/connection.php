@@ -3,10 +3,10 @@ class Connection {
         
         private static $bdd;
         static function connectDb(){
-                $host = 'localhost'; // ou sql.hebergeur.com
-                $user = 'root';      // ou login
-                $pwd = '';      // ou xxxxxx
-                $db = 'testcpoa';
+                $host = 'iutdoua-web.univ-lyon1.fr'; // ou sql.hebergeur.com
+                $user = 'p2003245';      // ou login
+                $pwd = '564094';      // ou xxxxxx
+                $db = 'p2003245';
             try {
                 self::$bdd = new PDO('mysql:host='.$host.';dbname='.$db.
                                 ';charset=utf8', $user, $pwd,
