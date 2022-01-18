@@ -14,9 +14,9 @@
 			
 			<form method='post' action="./fiche.php?id=<?=$_GET['id'];?>">
 				<label for='fobjet'>Objet :</label><br>
-				<input type='text' id='fobjet' name='objet'><br><br>
+				<input type='text' id='fobjet' name='objet' required><br><br>
 				<label for='fdescription'>Description :</label><br>
-				<input type='text' id='fdescription' name='description'><br><br>
+				<input type='text' id='fdescription' name='description' required><br><br>
 				<input type='submit' value='Submit'>
 			</form>
 	</div>
