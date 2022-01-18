@@ -146,3 +146,5 @@ Ajout de cookies qui gèrent l'authentification :
 - affichage d'un message si mauvais mot de passe ou identifiant
 
 Bug d'auto-increment reglé (il bloquait le fait d'ajouter plusieurs interactions). Le back-end est donc maintenant complétement fonctionnel
+
+Champs lors de la création d'un interactions sont maintenant obligatoires
