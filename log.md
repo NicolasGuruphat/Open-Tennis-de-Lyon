@@ -141,7 +141,8 @@ Début du système d'authentification :
 ### Nicolas
 Ajout de cookies qui gèrent l'authentification :
 - l'accès aux pages est maintenant refusé si vous n'êtes pas authentifié
-- l'authentification met en place un cookie qui expire au bout de 5 minutes
+- l'authentification met en place un cookie qui expire au bout de 15 minutes
 - si l'utilisateur essaie d'aller sur la page d'authentification alors qu'il est déjà authentifié, il est redirigé sur la page liste vip
 - affichage d'un message si mauvais mot de passe ou identifiant
 
+Bug d'auto-increment reglé (il bloquait le fait d'ajouter plusieurs interactions). Le back-end est donc maintenant complétement fonctionnel
