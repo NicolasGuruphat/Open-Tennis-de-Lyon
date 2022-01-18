@@ -9,6 +9,17 @@
 		<img src="./logo.jpg">
 	</a>
 	<h1>Open tennis - Fiche VIP</h1>
+	<div class='interaction'>
+			<h2>Ajouter une interaction</h2>
+			
+			<form method='post' action="./fiche.php?id=<?=$_GET['id'];?>">
+				<label for='fobjet'>Objet :</label><br>
+				<input type='text' id='fobjet' name='objet'><br><br>
+				<label for='fdescription'>Description :</label><br>
+				<input type='text' id='fdescription' name='description'><br><br>
+				<input type='submit' value='Submit'>
+			</form>
+	</div>
 	<div class="fiche">
 
 	<?php
@@ -52,9 +63,9 @@
 					$titre = $data['2'];
 					$contenu= $data['3'];
 					
-					echo $titre;
+					echo "objet : ".$titre;
 					echo "</br>";
-					echo $contenu;
+					echo "contenu : ".$contenu;
 					echo "</br>";
 					echo "</div>";
 				}
@@ -68,18 +79,5 @@
 		header('Location:accessDenied.php');
 	}
 	?>
-
-		<div class='interaction'>
-			<h2>Ajouter une interaction</h2>
-			
-			<form method='post' action="./fiche.php?id=<?=$_GET['id'];?>">
-				<label for='fobjet'>Objet :</label><br>
-				<input type='text' id='fobjet' name='objet'><br><br>
-				<label for='fdescription'>Description :</label><br>
-				<input type='text' id='fdescription' name='description'><br><br>
-				<input type='submit' value='Submit'>
-			</form>
-		</div>
-		
 	</div>
 </body>

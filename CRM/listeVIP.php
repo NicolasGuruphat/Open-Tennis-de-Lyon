@@ -4,13 +4,16 @@ if(isset($_COOKIE["token"])){
     if($_COOKIE["token"]){
         Connection::ConnectDb();
         $bdd=Connection::getBDD();
-        $query = $bdd->prepare('SELECT nom,idFiche FROM fichevip');
+        $query = $bdd->prepare('SELECT nom,prenom,idFiche FROM fichevip');
         $query->execute();
         while ($data = $query->fetch())  
         {
             $nom = $data['0'];
-            $id= $data['1'];
-            echo "<a href=\"./fiche.php?id=$id\">$nom</a><br>";
+            $prenom= $data['1'];
+            $id= $data['2'];
+            echo "<div style=\"background-color:cyan;border: 1px solid black\">
+            <a href=\"./fiche.php?id=$id\">
+            $prenom $nom</a></div><br>";
             
         }
         echo $data['0'];
