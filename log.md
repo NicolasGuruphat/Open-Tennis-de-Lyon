@@ -126,8 +126,12 @@ Fin du form d'ajout d'interactions:
 Les données sont également récupérées pour afficher les interactions liées à la fiche
 
 Début du système d'authentification :
-- Mise en place du form de login
+- Mise en place du form de login    
 
+#### Adrien  
+  
+-Création des constructeurs a partir de la base de données (Joueur, Arbitres, Matchs, Terrain)  
+-Début du constructeur horaire  
 ## 18/01 (séance en autonomie de 2 heures)
 ### Nicolas
 
