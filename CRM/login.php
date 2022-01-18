@@ -9,7 +9,7 @@ if(isset($_POST["utilisateur"]) and isset($_POST["motDePasse"])){
     $query->bindParam(1,$utilisateur);
     $query->execute();
     $data = $query->fetch();
-    if($data[1]==$mdp){
+    if($data[1]==(hash('sha512',$mdp))){
         echo "authentification réussi";
         $newURL="./listeVIP.php";
         header('Location: '.$newURL);

@@ -7,7 +7,7 @@ include('connection.php');
 Connection::ConnectDb();
 $bdd=Connection::getBDD();
 $id=null;
-if(isset($_POST['id']))
+if(isset($_GET['id']))
 {
 	$id=$_GET['id'];
 	$query = $bdd->prepare("SELECT * FROM fichevip where idFiche = $id");
