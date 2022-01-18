@@ -128,4 +128,6 @@ Les données sont également récupérées pour afficher les interactions liées
 Début du système d'authentification :
 - Mise en place du form de login
 
+## 18/01 (séance en autonomie de 2 heures)
+### Nicolas
 
