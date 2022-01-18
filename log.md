@@ -137,4 +137,11 @@ Début du système d'authentification :
 ### Nicolas
 -Fin du système d'authentification : accès à la page de liste des VIP. Utilisation de l'algo de hashage sha512 afin de stocker le mdp de manière sécurisé. Lors de l'authentification, l'input est hashé pour effectuer la correspondance  
 
+## 18/01 
+### Nicolas
+Ajout de cookies qui gèrent l'authentification :
+- l'accès aux pages est maintenant refusé si vous n'êtes pas authentifié
+- l'authentification met en place un cookie qui expire au bout de 5 minutes
+- si l'utilisateur essaie d'aller sur la page d'authentification alors qu'il est déjà authentifié, il est redirigé sur la page liste vip
+- affichage d'un message si mauvais mot de passe ou identifiant
 
