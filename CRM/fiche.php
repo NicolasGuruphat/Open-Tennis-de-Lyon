@@ -47,9 +47,10 @@
 				if(isset($_POST['objet']) and isset($_POST['description'])){
 					$titre=$_POST['objet'];
 					$description=$_POST['description'];
+					$query = $bdd->prepare("INSERT INTO Interaction (idFiche, idInteraction, titre, contenu, date) VALUES (?, ?, ?, ?, ?)");
+					$data=array($id,0,$titre,$description,date("Y-m-d"));	
+					$query->execute($data);
 					echo "<p style='color:green'>votre interaction a été ajoutée avec succès</p>";
-					$query = $bdd->prepare("INSERT INTO interaction (idFiche,idInteraction, titre, contenu, date) VALUES (?,?,?,?,?)");
-					$query->execute(array($id,100,$titre,$description,date("Y-m-d")));		
 				}
 
 				$query = $bdd->prepare("SELECT * FROM Interaction where idFiche = $id");
