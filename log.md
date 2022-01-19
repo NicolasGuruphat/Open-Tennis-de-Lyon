@@ -148,3 +148,11 @@ Ajout de cookies qui gèrent l'authentification :
 Bug d'auto-increment reglé (il bloquait le fait d'ajouter plusieurs interactions). Le back-end est donc maintenant complétement fonctionnel
 
 Champs lors de la création d'un interactions sont maintenant obligatoires
+
+## 19/01 (séance du matin) 
+### Nicolas
+Restructuration globale de la BDD avec Hugo car beaucoup de problèmes avec les clés étrangères 
+
+## 19/01 (séance autonomie à 12h30 + séance de l'après midi)
+### Nicolas
+Adaptation de l'application web à la nouvelle base de données
