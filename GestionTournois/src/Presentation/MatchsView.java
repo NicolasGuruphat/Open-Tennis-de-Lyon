@@ -1,13 +1,11 @@
-package View;
+package Presentation;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MatchsView {
-    private JFrame choixTour = new JFrame();
-    private JFrame listeMatchs = new JFrame();
+    private JFrame tourSelect = new JFrame();
+    private JFrame matchesList = new JFrame();
     private JLabel listTitle;
 
     public MatchsView() {
@@ -15,60 +13,21 @@ public class MatchsView {
     }
 
     private void initComponents() {
-        JPanel mainPanel = new JPanel();
-
-        frameInit(choixTour, new Dimension(700, 200));
-        choixTour.setContentPane(mainPanel);
-        choixTour.setVisible(true);
-
-        JButton firstRound = new JButton("1er Tour");
-        firstRound.addActionListener(actionEvent -> {
-            listTitle = new JLabel("Matchs du premier tour");
-            newWindow();
-        });
-        JButton secondRound = new JButton("2ème Tour");
-        secondRound.addActionListener(actionEvent -> {
-            listTitle = new JLabel("Matchs du second tour");
-            newWindow();
-        });
-        JButton quarterFinal = new JButton("Quarts de finale");
-        secondRound.addActionListener(actionEvent -> {
-            listTitle = new JLabel("Matchs des quarts de finale");
-            newWindow();
-        });
-        JButton semiFinal = new JButton("Demi-finale");
-        semiFinal.addActionListener(actionEvent -> {
-            listTitle = new JLabel("Matchs de demi-finale");
-            newWindow();
-        });
-        JButton finalRound = new JButton("Finale");
-        finalRound.addActionListener(actionEvent -> {
-            listTitle = new JLabel("Finale");
-            newWindow();
-        });
-
-        mainPanel.add(firstRound);
-        mainPanel.add(secondRound);
-        mainPanel.add(quarterFinal);
-        mainPanel.add(semiFinal);
-        mainPanel.add(finalRound);
+        // Initialising both frames
+        tourSelectInit();
+        matchesListInit();
+        
+        // We first use the tourSelect
+        tourSelect.setVisible(true);
+        tourSelect.repaint();
+        
+        
     }
 
     private void newWindow() {
-        frameInit(listeMatchs, new Dimension(600, 800));
-        listeMatchs.setVisible(true);
-        choixTour.setVisible(false);
-
-        listeMatchs.add(listTitle);
-        JButton back = new JButton("Retour");
-        back.addActionListener(actionEvent -> {
-            listeMatchs.setVisible(false);
-            choixTour.setVisible(true);
-        });
-
-        listeMatchs.add(back);
-
-        listeMatchs.setLayout(new BoxLayout(listeMatchs.getContentPane(), BoxLayout.PAGE_AXIS));
+        tourSelect.setVisible(false);
+        matchesList.setVisible(true);
+        matchesList.repaint();
     }
 
     private void frameInit(JFrame frame, Dimension dimension) {
@@ -77,6 +36,57 @@ public class MatchsView {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    
+    private void tourSelectInit() {
+        frameInit(tourSelect, new Dimension(650, 150));
+        
+        JButton firstRound = new JButton("Premier Tour");
+        firstRound.addActionListener(actionEvent -> {
+            listTitle.setText("Matchs du premier tour");
+            newWindow();
+        });
+        JButton secondRound = new JButton("Second Tour");
+        secondRound.addActionListener(actionEvent -> {
+            listTitle.setText("Matchs du second tour");
+            newWindow();
+        });
+        JButton quarterFinal = new JButton("Quart de Finale");
+        quarterFinal.addActionListener(actionEvent -> {
+            listTitle.setText("Matchs de quart de finale");
+            newWindow();
+        });
+        JButton semiFinal = new JButton("Demi-finale");
+        semiFinal.addActionListener(actionEvent -> {
+            listTitle.setText("Matchs du demi-finale");
+            newWindow();
+        });
+        JButton finalRound = new JButton("Finale");
+        finalRound.addActionListener(actionEvent -> {
+            listTitle.setText("Match de finale");
+            newWindow();
+        });
+        
+        tourSelect.add(firstRound);
+        tourSelect.add(secondRound);
+        tourSelect.add(quarterFinal);
+        tourSelect.add(semiFinal);
+        tourSelect.add(finalRound);
+        tourSelect.setLayout(new FlowLayout());
+    }
+    
+    private void matchesListInit() {
+        frameInit(matchesList, new Dimension(600, 800));
+        listTitle = new JLabel();
+        JButton backButton = new JButton("Retour");
+        backButton.addActionListener(actionEvent -> {
+            matchesList.setVisible(false);
+            tourSelect.setVisible(true);
+        });
+        
+        matchesList.add(listTitle);
+        matchesList.add(backButton);
+        matchesList.setLayout(new FlowLayout());
     }
 
     public static void main(String[] args) {
