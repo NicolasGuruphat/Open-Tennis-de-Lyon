@@ -24,17 +24,26 @@ public class Joueur extends Participant {
    public void supprimerReservation() {
       // TODO: implement
    }
-   
-       public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple,int id, String nom, String prenom, String nationnalite) {
-        super(id,nom, prenom, nationnalite);
+
+    public Joueur(Collection<Match> joueEnMatchDouble, Collection<Match> joueEnMatchSimple, int id, String nom, String prenom, String nationnalite) {
+        super(id, nom, prenom, nationnalite);
         this.joueEnMatchDouble = joueEnMatchDouble;
         this.joueEnMatchSimple = joueEnMatchSimple;
         listeJoueur.add(this);
     }
-   
-   
+
+    
+    public static ArrayList<Joueur> getListeJoueur() {
+        return listeJoueur;
+    }
+
+    public static void setListeJoueur(ArrayList<Joueur> listeJoueur) {
+        Joueur.listeJoueur = listeJoueur;
+    }
+    
+    
    /** @pdGenerated default getter */
-   public java.util.Collection<Match> getJoueEnMatchDouble() {
+    public java.util.Collection<Match> getJoueEnMatchDouble() {
       if (joueEnMatchDouble == null)
          joueEnMatchDouble = new java.util.HashSet<Match>();
       return joueEnMatchDouble;
@@ -130,12 +139,12 @@ public class Joueur extends Participant {
          joueEnMatchSimple.clear();
    }
     public static void printAll(){
-        System.out.println("print all");
-        for(Joueur joueur : listeJoueur)
-        {
-            System.out.println(joueur.id);
-        }
+        System.out.println("print all");        
         
-    }
+        for (int i = 0; i < listeJoueur.size() ; i++)
+            {
+            System.out.println(listeJoueur.get(i).getId());
+            }
 
+    }
 }

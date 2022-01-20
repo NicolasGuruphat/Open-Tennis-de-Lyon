@@ -6,10 +6,16 @@ package Presentation;
 
 import BaseDeDonnees.ObjectFactory;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
+import metier.Arbitre;
+import metier.Horaire;
+import metier.Joueur;
+import metier.Match;
+import metier.Terrain;
 
 /**
  *
@@ -257,13 +263,49 @@ public class IHM extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+       // System.out.println("create joueur");
+       // ObjectFactory.createJoueurs();
+        System.out.println("create Terrains");
+        ObjectFactory.createTerrains();
+        System.out.println("create Horraires");
+        ObjectFactory.createHoraires();
+        
+        System.out.println("create Joueurs");
         ObjectFactory.createJoueurs();
+        
+        System.out.println("create Arbitre");
         ObjectFactory.createArbitres();
+        
+        
+        System.out.println("PHASE 2 : ");
+        
+        System.out.println("taille terrain : " + Terrain.getListeTerrain().size());
+        System.out.println("taille horaire : " + Horaire.getListeHoraire().size()); 
+        System.out.println("taille Arbitre : " + Arbitre.getListeArbitre().size());
+        System.out.println("taille joueur : " + Joueur.getListeJoueur().size()+ "\n\n");
+        
+        
+        Match.genererArbreMatch();
+        
+        System.out.println("taille match : " + Match.getListeMatch().size());
+        
+        Match.PrintAll();
+        
+        ArrayList<Match> listeMatch = Match.getListeMatch();
+        
+        //listeMatch.get(0).creerMatch(listeMatch.get(0), listeMatch.get(1));
+        
+        
+        
+        
+
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IHM().setVisible(true);
             }
         });
+    */
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
