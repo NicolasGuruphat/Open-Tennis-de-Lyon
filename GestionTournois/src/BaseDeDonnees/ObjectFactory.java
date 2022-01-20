@@ -4,6 +4,9 @@
  */
 package BaseDeDonnees;
 
+import java.util.Date;
+import java.time.*;
+
 import metier.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -21,7 +24,7 @@ public class ObjectFactory {
     {
         try{
             Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Joueurs"); 
+            ResultSet rslt = stm.executeQuery("select * from Joueur"); 
             while(rslt.next()){
                 int id=rslt.getInt("idJoueur");
                 String nom = rslt.getString("Nom");
@@ -32,26 +35,25 @@ public class ObjectFactory {
         }catch(Exception e){
             System.out.println(e);
         }
-        Joueur.printAll();
+
     }
     
     public static void createArbitres()
     {
         try{
             Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Arbitres"); 
+            ResultSet rslt = stm.executeQuery("select * from Arbitre"); 
             while(rslt.next()){
                 int id=rslt.getInt("idArbitre");
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
                 String typeArbitre = rslt.getString("typeArbitre");
-                Arbitre arbitre = new Arbitre(id,typeArbitre,null,nom,prenom,nationalite);
+                new Arbitre(id,typeArbitre,nom,prenom,nationalite);
             }
         }catch(Exception e){
             System.out.println(e);
         }
-        Arbitre.printAll();
     }
     public static void createMatchs()
     {
@@ -79,14 +81,50 @@ public class ObjectFactory {
                         else{
                             score.put(idJoueur,part2);
                         }
-                    } 
+                    }
                 }
-                Match match = new Match(id,tour,score,null);
+                //int
+                //new Match(id,tour,score,null);
             }            
         }catch(Exception e){
             System.out.println(e);
         }
-        Arbitre.printAll();
+    }
+    
+    public static void createHoraires()
+    {
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rslt = stm.executeQuery("select * from Horaire");
+            while(rslt.next()){
+                int idHoraire=rslt.getInt("idHoraire");
+                Date date = rslt.getDate("date");
+                Time heureDebut = rslt.getTime("heureDebut");
+                Time heureFin = rslt.getTime("heureFin");
+                
+                https://howtodoinjava.com/java/date-time/localtime-to-sql-time/
+                new Horaire(idHoraire, date, heureDebut.toLocalTime(), heureFin.toLocalTime() );
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public static void createTerrains()
+    {
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rslt = stm.executeQuery("select * from Terrain");
+            while(rslt.next()){
+                int idTerrain=rslt.getInt("idTerrain");
+                String nom = rslt.getString("nom");
+                String typeTerrain = rslt.getString("typeTerrain");
+                
+                new Terrain(idTerrain, nom, typeTerrain);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     
     

@@ -6,13 +6,17 @@
 
 package metier;
 
-import java.util.*;
+//import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.time.*;
+
 
 public class Horaire {
    private int id;
    private Date date;
-   private Date heureDebut;
-   private Date heureFin;
+   private LocalTime heureDebut;
+   private LocalTime heureFin;
    private static ArrayList<Horaire> listeHoraire=new ArrayList();
 
    protected void finalize() {
@@ -20,15 +24,13 @@ public class Horaire {
    }
 
    
-   
-   
    /** @param date 
     * @param heureDebut 
     * @param heureFin 
-    * @param terrainDispo */
+    * @param listeHoraire */
    
 
-    public Horaire(int id, Date date, Date heureDebut, Date heureFin) {
+    public Horaire(int id, Date date, LocalTime heureDebut, LocalTime heureFin) {
         this.id = id;
         this.date = date;
         this.heureDebut = heureDebut;
@@ -36,6 +38,10 @@ public class Horaire {
         listeHoraire.add(this);
     }
    
+    
+    
+    
+    
    public int getId() {
       return id;
    }
@@ -54,21 +60,21 @@ public class Horaire {
       date = newDate;
    }
    
-   public Date getHeureDebut() {
+   public LocalTime getHeureDebut() {
       return heureDebut;
    }
    
    /** @param newHeureDebut */
-   public void setHeureDebut(Date newHeureDebut) {
+   public void setHeureDebut(LocalTime newHeureDebut) {
       heureDebut = newHeureDebut;
    }
    
-   public Date getHeureFin() {
+   public LocalTime getHeureFin() {
       return heureFin;
    }
    
    /** @param newHeureFin */
-   public void setHeureFin(Date newHeureFin) {
+   public void setHeureFin(LocalTime newHeureFin) {
       heureFin = newHeureFin;
    }
    
@@ -80,5 +86,14 @@ public class Horaire {
     public static void setListeHoraire(ArrayList<Horaire> listeHoraire) {
         Horaire.listeHoraire = listeHoraire;
     }
+    
+    public static void printAll(){
+        System.out.println("printAll terrain");
+
+        for (int i = 0; i < listeHoraire.size() ; i++)
+            {
+            System.out.println(listeHoraire.get(i).getId());
+            }
+        }
    
 }

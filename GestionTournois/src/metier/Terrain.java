@@ -55,8 +55,15 @@ public class Terrain {
     public static void setListeTerrain(ArrayList<Terrain> listeTerrain) {
         Terrain.listeTerrain = listeTerrain;
     }
-   
-   
-   
+    
+    public static void printAll(){
+        System.out.println("printAll terrain");
+
+        for (int i = 0; i < listeTerrain.size() ; i++)
+            {
+            System.out.println(listeTerrain.get(i).getId());
+            }
+
+        }
 
 }
