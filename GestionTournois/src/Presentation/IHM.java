@@ -307,7 +307,7 @@ public class IHM extends javax.swing.JFrame {
             }
         });
     */
-        ConnectionFactory.closeAllConnection();
+        ConnectionFactory.closeAllConnection(); 
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
