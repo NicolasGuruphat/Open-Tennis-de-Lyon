@@ -4,7 +4,7 @@
  * Purpose: Defines the Class Match
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 import BaseDeDonnees.DBDataFactory;
 import java.util.*;

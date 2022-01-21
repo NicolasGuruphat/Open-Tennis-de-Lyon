@@ -4,7 +4,7 @@
  * Purpose: Defines the Class Joueur
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 import java.util.*;
 

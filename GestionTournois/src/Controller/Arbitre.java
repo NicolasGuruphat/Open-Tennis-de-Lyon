@@ -4,7 +4,7 @@
  * Purpose: Defines the Class Arbitre
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 import java.util.*;
 

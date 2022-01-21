@@ -4,7 +4,7 @@
  * Purpose: Defines the Class Participant
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 import java.util.*;
 

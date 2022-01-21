@@ -4,7 +4,7 @@
  * Purpose: Defines the Class RamasseurBalle
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 import java.util.*;
 
