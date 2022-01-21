@@ -4,6 +4,7 @@
  */
 package Presentation;
 
+import BaseDeDonnees.ConnectionFactory;
 import BaseDeDonnees.ObjectFactory;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -306,6 +307,7 @@ public class IHM extends javax.swing.JFrame {
             }
         });
     */
+        ConnectionFactory.closeAllConnection();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

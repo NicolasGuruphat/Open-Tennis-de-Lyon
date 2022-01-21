@@ -30,7 +30,7 @@ public class ObjectFactory {
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
-                Joueur joueur = new Joueur(null, null, id,nom,prenom,nationalite);
+                Joueur joueur = new Joueur(id,nom,prenom,nationalite);
             }
         }catch(Exception e){
             System.out.println(e);
