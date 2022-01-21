@@ -6,34 +6,82 @@
 
 package metier;
 
-import java.util.*;
+import BaseDeDonnees.DBDataFactory;
 import java.util.*;
 
 public class Match {
     private int id;
     private int tour;
-    private Map<Integer,Integer> score = new HashMap<Integer,Integer>(); // associe un idJoueur avec son score
+    private Map<Joueur,ArrayList<Integer>> score = new HashMap<>(); // associe un idJoueur avec son score
     private Match fils;
    
     private Terrain terrain;
     private Horaire horaire;
-    private Arbitre arbitre;
+    private boolean resultat;
+    private ArrayList<Arbitre> arbitre = new ArrayList();
     
     private static ArrayList<Match> listeMatch = new ArrayList();
    
    
    
-
-    public Match(int id, int tour, Match fils, Terrain terrain, Horaire horaire,Arbitre arbitre) {
+    //Constructeur pour la méthode générerMatch()
+    public Match(int id) {
+        ArrayList<Joueur>listeJoueurTotaux = Joueur.getListeJoueur();
+        ArrayList<Horaire>listeHoraireTotaux = Horaire.getListeHoraire();
+        ArrayList<Terrain>listeTerrainTotaux = Terrain.getListeTerrain();
+                
+        
         this.id = id;
-        this.tour = tour;
-        this.fils = fils;
-        this.terrain = terrain;
-        this.horaire = horaire;
-        this.arbitre = arbitre;
+        this.tour = 1;
+        this.fils = null;
+        
+        this.arbitre.add(assignerArbitre(id,"Chaise"));
+        for (int i = 0; i < 8; i++) { this.arbitre.add(assignerArbitre(id,"Ligne")); }
+        
+        this.horaire = listeHoraireTotaux.get((this.id)/5);
+        this.terrain = listeTerrainTotaux.get((this.id)%5);
+        
+        this.score.put(listeJoueurTotaux.get(2*id),new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
+        this.score.put(listeJoueurTotaux.get(2*id+1),new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
+        
+        
+                
+                
+                
         listeMatch.add(this);
     }
    
+    public Match(int id, int tour, Joueur joueur1, Joueur joueur2) {  
+        
+        ArrayList<Horaire>listeHoraireTotaux = Horaire.getListeHoraire();
+        ArrayList<Terrain>listeTerrainTotaux = Terrain.getListeTerrain();
+        
+        this.id = id;
+        this.tour = tour;
+        this.fils = null;
+        
+        this.arbitre.add(assignerArbitre(id,"Chaise"));
+        
+        for (int i = 0; i < 8; i++) { this.arbitre.add(assignerArbitre(id,"Ligne")); }
+        
+        this.horaire = listeHoraireTotaux.get((this.id)/5);
+        this.terrain = listeTerrainTotaux.get((this.id)%5);
+        
+        this.score.put(joueur1,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
+        this.score.put(joueur2,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
+                
+                
+                
+        listeMatch.add(this);
+    }
+
+    public boolean isResultat() {
+        return resultat;
+    }
+
+    public void setResultat(boolean resultat) {
+        this.resultat = resultat;
+    }
    
    
    protected void finalize() {
@@ -110,12 +158,12 @@ public class Match {
       tour = newTour;
    }
    
-   public Map<Integer,Integer> getScore() {
+   public Map<Joueur,ArrayList<Integer>> getScore() {
       return score;
    }
    
    /** @param newScore */
-   public void setScore(Map<Integer,Integer> newScore) {
+   public void setScore(Map<Joueur,ArrayList<Integer>> newScore) {
       score = newScore;
    }
 
@@ -143,11 +191,11 @@ public class Match {
         this.horaire = horaire;
     }
 
-    public Arbitre getArbitre() {
+    public ArrayList<Arbitre> getArbitre() {
         return arbitre;
     }
 
-    public void setArbitre(Arbitre arbitre) {
+    public void setArbitre(ArrayList<Arbitre> arbitre) {
         this.arbitre = arbitre;
     }
     
@@ -164,80 +212,95 @@ public class Match {
     
 
             
-    private void assignerArbitre(int incrementeurJoueur)
-        {
+   private Arbitre assignerArbitre(int incrementeurJoueur, String typeArbitre)
+        {            
             
         ArrayList<Joueur> listeJoueurTotaux = Joueur.getListeJoueur();
         ArrayList<Arbitre> listeArbitreTotaux = Arbitre.getListeArbitre();
         
-        int incrementeurArbitre = 0;
-        
+        int limiteIncrementeurArbitre = 0;
+        int limiteArbitreMax = listeArbitreTotaux.size()/2;
         
         int limiteIncrementeurJoueur = incrementeurJoueur;
         int limiteJoueurMax = listeJoueurTotaux.size();
+        
 
-        while(  (limiteIncrementeurJoueur < limiteJoueurMax) &&
-                    ( listeArbitreTotaux.get(incrementeurArbitre).getListeHoraire().indexOf(this.getHoraire()) != -1) 
+        while(       
+                    
+                    //les limites ne sont pas dépassés
+                    ( (limiteIncrementeurJoueur < limiteJoueurMax && limiteIncrementeurArbitre < limiteArbitreMax ) 
+                    &&
+                    //les types ne sont pas bon
+                    (  "Chaise".equals(typeArbitre) && "Ligne".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre())
+                    || "Ligne".equals(typeArbitre) && "Chaise".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()) )
+                    &&
+                    //l'arbitre a déja l'horaire du match pris pour un autre match
+                    ( ( listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().indexOf(this.getHoraire()) != -1) 
                     ||
-                    ( (listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite() == null ? listeArbitreTotaux.get(incrementeurArbitre).getNationnalite() == null : listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite().equals(listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) ) 
+                    //l'arbitre a la même nationnalité que l'un des deux joueurs
+                    ( (listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite() == null ? listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite() == null : listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite().equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) ) 
                     || 
-                    (listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite() == null ? (listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) == null : listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite().equals(listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) ))
+                    (listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite() == null ? (listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) == null : listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite().equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) )) )
+                    )
                 )
             {
-               listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
-               listeArbitreTotaux.remove(incrementeurJoueur);
-               limiteIncrementeurJoueur++; 
-               incrementeurArbitre++;
+                
+            if ("Chaise".equals(typeArbitre) && "Chaise".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()) && (listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().size() <= 4 ) ) 
+                {
+                listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
+                listeArbitreTotaux.remove(incrementeurJoueur);
+                
+
+                }
+            
+            else if("Ligne".equals(typeArbitre) && "Ligne".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()))
+                {
+
+                listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
+                listeArbitreTotaux.remove(incrementeurJoueur);
+
+
+                }
+            
+            limiteIncrementeurJoueur++;
+            limiteIncrementeurArbitre++;          
+             
+
             }
-        if (limiteIncrementeurJoueur == limiteJoueurMax) {System.out.println("Pas d'arbitre trouvée, assignation par défaut"); }
-        
-        this.arbitre = listeArbitreTotaux.get(incrementeurArbitre);
-        this.arbitre.getListeHoraire().add(this.horaire);
-        
+
+             if (limiteIncrementeurJoueur == limiteJoueurMax) {System.out.println("Pas d'arbitre trouvée, assignation par défaut"); }
+
+             listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().add(this.horaire);
+
+             return listeArbitreTotaux.get(limiteIncrementeurArbitre);
         }
+    
     
             
 
-    public static void genererArbreMatch() {
-        // TODO: implement
-        
-        
-        ArrayList<Joueur> listeJoueurTotaux = Joueur.getListeJoueur();
-        ArrayList<Horaire> listeHoraireTotaux = Horaire.getListeHoraire();
-        ArrayList<Terrain> listeTerrainTotaux = Terrain.getListeTerrain();
-        
-        
-        Match nouveauMatch;
-      
+    public static void genererArbreMatch() 
+        {
+            
         for( int i=0; i< 16; i++)
-            {
-                
-            nouveauMatch = new Match( i, 1, null, null,null,null);
-            
-            nouveauMatch.setHoraire(listeHoraireTotaux.get(i/5));
-            nouveauMatch.setTerrain(listeTerrainTotaux.get(i%5));
-            System.out.println( i +"  --> i%5 =  --> " + i%5);
-            
-            nouveauMatch.getScore().put(listeJoueurTotaux.get(2*i).getId(), null);
-            nouveauMatch.getScore().put(listeJoueurTotaux.get(2*i+1).getId(), null);
-
-            nouveauMatch.assignerArbitre(i);
- 
+            {   
+            new Match(i);
             }
           
       }
     
     public static void PrintAll()
         {
+            
             System.out.println("PRINT MATCHS  ");
             for (int i = 0; i< listeMatch.size(); i++ )
                 {
+                    DBDataFactory.createMatch(listeMatch.get(i));
                     System.out.println("match ID : " + listeMatch.get(i).getId()  );
                     System.out.println("match tour : " + listeMatch.get(i).getTour()  );
                     System.out.println("match horaire : " + listeMatch.get(i).getHoraire().getDate() +  "    " +  listeMatch.get(i).getHoraire().getHeureDebut()  );
                     System.out.println("match Terrain: " + listeMatch.get(i).getTerrain().getId()  );
                     System.out.println("match score : " + listeMatch.get(i).getScore());
-                    System.out.println("match Arbitre nationnalité + id : " + listeMatch.get(i).getArbitre().getNationnalite() + "  " + listeMatch.get(i).getArbitre().getId() +" " + listeMatch.get(i).getArbitre().getListeHoraire().size() +  "\n\n" );
+                    //System.out.println("match Arbitre nationnalité + id : " + listeMatch.get(i).getArbitre().getNationnalite() + "  " + listeMatch.get(i).getArbitre().getId() +" " + listeMatch.get(i).getArbitre().getListeHoraire().size() +  "\n\n" );
 
                     //System.out.println("match Arbitre nationnalité : " + listeMatch.get(i).getArbitre().getNationnalite() + "\n\n" );
                     

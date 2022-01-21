@@ -43,16 +43,16 @@
         		$query->execute();
 				$data=$query->fetch();
 				if($data[1] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Joueur where ListeVIP.idFiche=$id");
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Joueur where Joueur.idJoueur=$id");
 				}
 				else if($data[2] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Arbitre where ListeVIP.idFiche=$id");  
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Arbitre where Arbitre.idArbitre=$id");  
 				}
 				else if($data[4] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join RamasseurDeBalle where ListeVIP.idFiche=$id");           
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$id");           
 				}
 				else if ($data[5]!= null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join AutreVIP where ListeVIP.idFiche=$id");           
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join AutreVIP where AutreVIP.idAutreVIP=$id");           
 				}
 				else{
 					$secondQuery = $bdd->prepare("SELECT * from Joueur");
