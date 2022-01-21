@@ -6,7 +6,7 @@
 
 package Controller;
 
-import BaseDeDonnees.DBDataFactory;
+import Model.DBDataFactory;
 import java.util.*;
 
 public class Match {

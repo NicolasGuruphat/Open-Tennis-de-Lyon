@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-import metier.Match;
-import metier.Joueur;
+import Controller.Match;
+import Controller.Joueur;
 import java.util.*;
 
 
