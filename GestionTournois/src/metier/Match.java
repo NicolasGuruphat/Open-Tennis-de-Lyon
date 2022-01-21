@@ -212,45 +212,67 @@ public class Match {
     
 
             
-    private Arbitre assignerArbitre(int incrementeurJoueur, String typeArbitre)
-        {
-        return null;
-            /*
+   private Arbitre assignerArbitre(int incrementeurJoueur, String typeArbitre)
+        {            
             
         ArrayList<Joueur> listeJoueurTotaux = Joueur.getListeJoueur();
         ArrayList<Arbitre> listeArbitreTotaux = Arbitre.getListeArbitre();
         
-        int incrementeurArbitre = 0;
-        
+        int limiteIncrementeurArbitre = 0;
+        int limiteArbitreMax = listeArbitreTotaux.size()/2;
         
         int limiteIncrementeurJoueur = incrementeurJoueur;
         int limiteJoueurMax = listeJoueurTotaux.size();
+        
 
-        while(  (limiteIncrementeurJoueur < limiteJoueurMax) &&
+        while(       
                     
-                    ( listeArbitreTotaux.get(incrementeurArbitre).getListeHoraire().indexOf(this.getHoraire()) != -1) 
+                    //les limites ne sont pas dépassés
+                    ( (limiteIncrementeurJoueur < limiteJoueurMax && limiteIncrementeurArbitre < limiteArbitreMax ) 
+                    &&
+                    //les types ne sont pas bon
+                    (  "Chaise".equals(typeArbitre) && "Ligne".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre())
+                    || "Ligne".equals(typeArbitre) && "Chaise".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()) )
+                    &&
+                    //l'arbitre a déja l'horaire du match pris pour un autre match
+                    ( ( listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().indexOf(this.getHoraire()) != -1) 
                     ||
-                    ( (listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite() == null ? listeArbitreTotaux.get(incrementeurArbitre).getNationnalite() == null : listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite().equals(listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) ) 
+                    //l'arbitre a la même nationnalité que l'un des deux joueurs
+                    ( (listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite() == null ? listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite() == null : listeJoueurTotaux.get(2*incrementeurJoueur).getNationnalite().equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) ) 
                     || 
-                    (listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite() == null ? (listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) == null : listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite().equals(listeArbitreTotaux.get(incrementeurArbitre).getNationnalite()) ))
+                    (listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite() == null ? (listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) == null : listeJoueurTotaux.get(2*incrementeurJoueur+1).getNationnalite().equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getNationnalite()) )) )
+                    )
                 )
             {
                 
-                /////////A VERIFIER, faut pas confondre condition du while et du if 
-               if !(typeArbitre == "Chaise" && listeArbitreTotaux.get(incrementeurArbitre).getTypeArbitre() == "Chaise" && (listeArbitreTotaux.get(incrementeurArbitre).getListeHoraire().size() <= 4 ) ) 
-                       {
-               listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
-               listeArbitreTotaux.remove(incrementeurJoueur);
-               
-                       }
-                limiteIncrementeurJoueur++; 
-               incrementeurArbitre++;
+            if ("Chaise".equals(typeArbitre) && "Chaise".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()) && (listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().size() <= 4 ) ) 
+                {
+                listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
+                listeArbitreTotaux.remove(incrementeurJoueur);
+                
+
+                }
+            
+            else if("Ligne".equals(typeArbitre) && "Ligne".equals(listeArbitreTotaux.get(limiteIncrementeurArbitre).getTypeArbitre()))
+                {
+
+                listeArbitreTotaux.add(listeArbitreTotaux.get(incrementeurJoueur));
+                listeArbitreTotaux.remove(incrementeurJoueur);
+
+
+                }
+            
+            limiteIncrementeurJoueur++;
+            limiteIncrementeurArbitre++;          
+             
+
             }
-        if (limiteIncrementeurJoueur == limiteJoueurMax) {System.out.println("Pas d'arbitre trouvée, assignation par défaut"); }
-        
-        this.arbitre = listeArbitreTotaux.get(incrementeurArbitre);
-        this.arbitre.getListeHoraire().add(this.horaire);
-        */
+
+             if (limiteIncrementeurJoueur == limiteJoueurMax) {System.out.println("Pas d'arbitre trouvée, assignation par défaut"); }
+
+             listeArbitreTotaux.get(limiteIncrementeurArbitre).getListeHoraire().add(this.horaire);
+
+             return listeArbitreTotaux.get(limiteIncrementeurArbitre);
         }
     
     
