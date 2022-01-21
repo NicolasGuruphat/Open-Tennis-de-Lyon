@@ -8,17 +8,18 @@ if(isset($_COOKIE["token"])){
         $query = $bdd->prepare('SELECT * from ListeVIP');
         $query->execute();
         while($data=$query->fetch()){
+            echo $data[0];
             if($data[1] != null){
-                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join Joueur where ListeVIP.idFiche=$data[0]");
+                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join Joueur where Joueur.idJoueur=$data[0]");
             }
             else if($data[2] != null){
-                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join Arbitre where ListeVIP.idFiche=$data[0]");               
+                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join Arbitre where Arbitre.idArbitre=$data[0]");               
             }
             else if($data[3] != null){
-                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join RamasseurDeBalle where ListeVIP.idFiche=$data[0]");               
+                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$data[0]");               
             }
             else if ($data[4]!= null){
-                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join AutreVIP where ListeVIP.idFiche=$data[0]");               
+                $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join AutreVIP where AutreVIP.idAutreVIP=$data[0]");               
             }
             else{
                 echo "problème dans la table FicheVIP";

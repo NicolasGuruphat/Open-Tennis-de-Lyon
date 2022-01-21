@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BaseDeDonnees;
+package Model;
 
 import java.util.Date;
 import java.time.*;
@@ -30,7 +30,7 @@ public class ObjectFactory {
                 String nom = rslt.getString("Nom");
                 String prenom = rslt.getString("Prenom");
                 String nationalite = rslt.getString("Nationalite");
-                Joueur joueur = new Joueur(null, null, id,nom,prenom,nationalite);
+                Joueur joueur = new Joueur(id,nom,prenom,nationalite);
             }
         }catch(Exception e){
             System.out.println(e);

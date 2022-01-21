@@ -4,7 +4,7 @@
  * Purpose: Defines the Class Horaire
  ***********************************************************************/
 
-package metier;
+package Controller;
 
 //import java.sql.*;
 import java.util.ArrayList;
