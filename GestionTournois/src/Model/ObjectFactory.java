@@ -90,6 +90,7 @@ public class ObjectFactory {
     
     public static void createSchedule() {
         connection = ConnectionFactory.createConnection();
+        Horaire.initListeHoraire();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Horaire");
@@ -98,7 +99,7 @@ public class ObjectFactory {
                 Date date = rs.getDate("date");
                 Time start = rs.getTime("heureDebut");
                 Time end = rs.getTime("heureFin");
-                new Horaire(id, date, start, end);
+                Horaire.addHoraire(new Horaire(id, date, start, end));
             }
             rs.close();
             stmt.close();
@@ -110,6 +111,7 @@ public class ObjectFactory {
     
     public static void createCourt() {
         connection = ConnectionFactory.createConnection();
+        Terrain.initListeTerrain();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Terrain");
@@ -117,7 +119,7 @@ public class ObjectFactory {
                 int id = rs.getInt("idTerrain");
                 String name = rs.getString("nom");
                 String courtType = rs.getString("typeTerrain");
-                new Terrain(id, name, courtType);
+                Terrain.addTerrain(new Terrain(id, name, courtType));
             }
                 rs.close();
                 stmt.close();
