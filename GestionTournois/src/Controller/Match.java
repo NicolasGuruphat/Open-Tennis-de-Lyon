@@ -21,6 +21,8 @@ public class Match {
     private ArrayList<Referee> arbitre = new ArrayList();
     
     private static ArrayList<Match> listeMatch = new ArrayList();
+    
+    private ArrayList<RamasseurBalle> ballPickerTeam = new ArrayList();
    
    
    
@@ -72,6 +74,14 @@ public class Match {
                 
                 
                 
+        listeMatch.add(this);
+    }
+    
+    public Match(int id, int tour, Horaire horaire, Terrain terrain) {
+        this.id = id;
+        this.tour = tour;
+        this.horaire = horaire;
+        this.terrain = terrain;
         listeMatch.add(this);
     }
 
@@ -210,11 +220,15 @@ public class Match {
 
     }
     
-
-            
-   private Referee assignerArbitre(int incrementeurJoueur, String typeArbitre)
-        {            
-            
+    public static void initListeMatch() {
+        listeMatch = new ArrayList();
+    }
+    
+    public static void addMatch(Match match) {
+        listeMatch.add(match);
+    }
+    
+    private Referee assignerArbitre(int incrementeurJoueur, String typeArbitre) {   
         ArrayList<Player> listeJoueurTotaux = Player.getPlayerList();
         ArrayList<Referee> listeArbitreTotaux = Referee.getRefereeList();
         
@@ -303,15 +317,22 @@ public class Match {
                     //System.out.println("match Referee nationnalité + id : " + listeMatch.get(i).getArbitre().getNationality() + "  " + listeMatch.get(i).getArbitre().getId() +" " + listeMatch.get(i).getArbitre().getListeHoraire().size() +  "\n\n" );
 
                     //System.out.println("match Referee nationnalité : " + listeMatch.get(i).getArbitre().getNationality() + "\n\n" );
-                    
-                    
-
-
-
                 }
-            
-    
         }
 
+    @Override
+    public String toString() {
+        return "Match{" + "id=" + id + 
+                ", tour=" + tour + 
+                ", score=" + score + 
+                ", fils=" + fils + 
+                ", terrain=" + terrain + 
+                ", horaire=" + horaire + 
+                ", resultat=" + resultat + 
+                ", arbitre=" + arbitre + 
+                ", ballPickerTeam=" + ballPickerTeam + 
+                '}';
+    }
+    
 }
 

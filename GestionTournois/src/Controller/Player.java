@@ -10,12 +10,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Player extends Attendant {
-   private static ArrayList<Player> playerList = new ArrayList();
+   private static ArrayList<Player> playerList;
 
     public Player(int id, String lastName, String firstName, Date birthDate, 
             String nationality) {
         super(id, lastName, firstName, birthDate, nationality);
-        playerList.add(this);
     }
     
     public void reserverCourt() {
@@ -33,6 +32,14 @@ public class Player extends Attendant {
 
     public static void setPlayerList(ArrayList<Player> playerList) {
         Player.playerList = playerList;
+    }
+    
+    public static void addPlayer(Player player) {
+        playerList.add(player);
+    }
+    
+    public static void initializePlayerList() {
+        playerList = new ArrayList();
     }
     
     public static void printAll(){

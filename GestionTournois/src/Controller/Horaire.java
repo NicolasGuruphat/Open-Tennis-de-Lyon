@@ -13,12 +13,10 @@ import java.time.*;
 
 
 public class Horaire {
-   private int id;
-   private Date date;
-//   private LocalTime heureDebut;
-//   private LocalTime heureFin;
-   private Time heureDebut, heureFin;
-   private static ArrayList<Horaire> listeHoraire = new ArrayList();
+    private int id;
+    private Date date;
+    private Time heureDebut, heureFin; // LocalTime
+    private static ArrayList<Horaire> listeHoraire;
 
    protected void finalize() {
       // TODO: implement
@@ -36,56 +34,59 @@ public class Horaire {
         this.date = date;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
-        listeHoraire.add(this);
+    }
+    
+    public int getId() {
+        return id;
     }
    
-    
-    
-    
-    
-   public int getId() {
-      return id;
-   }
+    /** @param newId */
+    public void setId(int newId) {
+       id = newId;
+    }
    
-   /** @param newId */
-   public void setId(int newId) {
-      id = newId;
-   }
+    public Date getDate() {
+       return date;
+    }
    
-   public Date getDate() {
-      return date;
-   }
+    /** @param newDate */
+    public void setDate(Date newDate) {
+       date = newDate;
+    }
    
-   /** @param newDate */
-   public void setDate(Date newDate) {
-      date = newDate;
-   }
+    public Time getHeureDebut() {
+       return heureDebut;
+    }
    
-   public Time getHeureDebut() {
-      return heureDebut;
-   }
+    /** @param newHeureDebut */
+    public void setHeureDebut(Time newHeureDebut) {
+       heureDebut = newHeureDebut;
+    }
    
-   /** @param newHeureDebut */
-   public void setHeureDebut(Time newHeureDebut) {
-      heureDebut = newHeureDebut;
-   }
+    public Time getHeureFin() {
+       return heureFin;
+    }
    
-   public Time getHeureFin() {
-      return heureFin;
-   }
-   
-   /** @param newHeureFin */
-   public void setHeureFin(Time newHeureFin) {
-      heureFin = newHeureFin;
-   }
+    /** @param newHeureFin */
+    public void setHeureFin(Time newHeureFin) {
+       heureFin = newHeureFin;
+    }
    
    
-   public static ArrayList<Horaire> getListeHoraire() {
-        return listeHoraire;
+    public static ArrayList<Horaire> getListeHoraire() {
+         return listeHoraire;
     }
 
     public static void setListeHoraire(ArrayList<Horaire> listeHoraire) {
         Horaire.listeHoraire = listeHoraire;
+    }
+    
+    public static void initListeHoraire() {
+        listeHoraire = new ArrayList<>();
+    }
+    
+    public static void addHoraire(Horaire horaire) {
+        listeHoraire.add(horaire);
     }
     
     public static void printAll(){
