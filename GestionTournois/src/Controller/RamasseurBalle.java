@@ -6,32 +6,35 @@
 
 package Controller;
 
-import java.util.*;
+import java.util.Collection;
+import java.sql.Date;
 
-public class RamasseurBalle extends Participant {
+public class RamasseurBalle extends Attendant {
+    private String club;
+    private int team;
+    public Collection<Match> matchsList;
    
-   private String club;
+    protected void finalize() {
+        // TODO: implement
+    }
    
-   protected void finalize() {
-      // TODO: implement
-   }
+    public java.util.Collection<Match> listeMatchs;
    
-   public java.util.Collection<Match> listeMatchs;
+    public String getClub() {
+        return club;
+    }
    
-   public String getClub() {
-      return club;
-   }
-   
-   /** @param newClub */
-   public void setClub(String newClub) {
-      club = newClub;
-   }
-   
-   /** @param club */
-    public RamasseurBalle(int id,String club, Collection<Match> listeMatchs, String nom, String prenom, String nationnalite) {
-        super(id, nom, prenom, nationnalite);
+    /** @param newClub */
+    public void setClub(String newClub) {
+        club = newClub;
+    }
+    
+    public RamasseurBalle(int id, String lastName, String firstName, 
+            Date birthDate, String nationality, String club, int team,
+            Collection<Match> matchsList) {
+        super(id, lastName, firstName, birthDate, nationality);
         this.club = club;
-        this.listeMatchs = listeMatchs;
+        this.matchsList = matchsList;
     }
    
    /** @pdGenerated default getter */

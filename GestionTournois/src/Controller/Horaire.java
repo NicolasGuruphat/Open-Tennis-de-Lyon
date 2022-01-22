@@ -6,7 +6,7 @@
 
 package Controller;
 
-//import java.sql.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.*;
@@ -15,9 +15,10 @@ import java.time.*;
 public class Horaire {
    private int id;
    private Date date;
-   private LocalTime heureDebut;
-   private LocalTime heureFin;
-   private static ArrayList<Horaire> listeHoraire=new ArrayList();
+//   private LocalTime heureDebut;
+//   private LocalTime heureFin;
+   private Time heureDebut, heureFin;
+   private static ArrayList<Horaire> listeHoraire = new ArrayList();
 
    protected void finalize() {
       // TODO: implement
@@ -30,7 +31,7 @@ public class Horaire {
     * @param listeHoraire */
    
 
-    public Horaire(int id, Date date, LocalTime heureDebut, LocalTime heureFin) {
+    public Horaire(int id, Date date, Time heureDebut, Time heureFin) {
         this.id = id;
         this.date = date;
         this.heureDebut = heureDebut;
@@ -60,21 +61,21 @@ public class Horaire {
       date = newDate;
    }
    
-   public LocalTime getHeureDebut() {
+   public Time getHeureDebut() {
       return heureDebut;
    }
    
    /** @param newHeureDebut */
-   public void setHeureDebut(LocalTime newHeureDebut) {
+   public void setHeureDebut(Time newHeureDebut) {
       heureDebut = newHeureDebut;
    }
    
-   public LocalTime getHeureFin() {
+   public Time getHeureFin() {
       return heureFin;
    }
    
    /** @param newHeureFin */
-   public void setHeureFin(LocalTime newHeureFin) {
+   public void setHeureFin(Time newHeureFin) {
       heureFin = newHeureFin;
    }
    
@@ -95,5 +96,14 @@ public class Horaire {
             System.out.println(listeHoraire.get(i).getId());
             }
         }
-   
+
+    @Override
+    public String toString() {
+        return "Horaire{" + "id=" + id + 
+                ", date=" + date + 
+                ", heureDebut=" + heureDebut + 
+                ", heureFin=" + heureFin + '}';
+    }
+    
+    
 }

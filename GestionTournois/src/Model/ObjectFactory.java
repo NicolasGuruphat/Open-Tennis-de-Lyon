@@ -4,128 +4,120 @@
  */
 package Model;
 
-import java.util.Date;
-import java.time.*;
-
-import Controller.*;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 import java.sql.*;
+import Controller.*;
+
 /**
  *
- * @author nicog
+ * @author elartic
  */
 public class ObjectFactory {
+    private static Connection connection;
     
-    static Connection connection = ConnectionFactory.createConnection();
-    
-    public static void createJoueurs()
-    {
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Joueur"); 
-            while(rslt.next()){
-                int id=rslt.getInt("idJoueur");
-                String nom = rslt.getString("Nom");
-                String prenom = rslt.getString("Prenom");
-                String nationalite = rslt.getString("Nationalite");
-                Joueur joueur = new Joueur(id,nom,prenom,nationalite);
-            }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
-    }
-    
-    public static void createArbitres()
-    {
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Arbitre"); 
-            while(rslt.next()){
-                int id=rslt.getInt("idArbitre");
-                String nom = rslt.getString("Nom");
-                String prenom = rslt.getString("Prenom");
-                String nationalite = rslt.getString("Nationalite");
-                String typeArbitre = rslt.getString("typeArbitre");
-                new Arbitre(id,typeArbitre,nom,prenom,nationalite);
-            }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
-    public static void createMatchs()
-    {
-        int idJoueur;
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from matchs"); 
-            while(rslt.next()){
-                int id=rslt.getInt("idMatch");
-                ResultSet rsltListeJoueurs = stm.executeQuery("select * from listejoueurs"); 
-                int idWinner=rslt.getInt("idWinner");
-                String typeMatch = rslt.getString("typeMatch");
-                int tour = rslt.getInt("tour");
-                String scoreString = rslt.getString("score");
-                String[] parts = scoreString.split("-");
-                int part1 = Integer.parseInt(parts[0]); 
-                int part2 = Integer.parseInt(parts[1]);
-                Map<Integer,Integer> score = new HashMap<Integer,Integer>();
-                while(rslt.next()){
-                    if(rslt.getInt("match")==id){
-                        idJoueur=rsltListeJoueurs.getInt("idJoueur");
-                        if(idJoueur==idWinner){
-                            score.put(idJoueur,part1);
-                        }
-                        else{
-                            score.put(idJoueur,part2);
-                        }
-                    }
+    public static void createPlayers() {
+        try {
+            connection = ConnectionFactory.createConnection();
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery("select * from Joueur");
+                while (rs.next()) {
+                    int id = rs.getInt("idJoueur");
+                    String lastName = rs.getString("nom");
+                    String firstName = rs.getString("prenom");
+                    Date birthDate = rs.getDate("dateNaissance");
+                    String nationality = rs.getString("nationalite");
+                    new Player(id, lastName, firstName, birthDate,
+                            nationality);
                 }
-                //int
-                //new Match(id,tour,score,null);
-            }            
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
-    
-    public static void createHoraires()
-    {
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Horaire");
-            while(rslt.next()){
-                int idHoraire=rslt.getInt("idHoraire");
-                Date date = rslt.getDate("date");
-                Time heureDebut = rslt.getTime("heureDebut");
-                Time heureFin = rslt.getTime("heureFin");
-                
-                https://howtodoinjava.com/java/date-time/localtime-to-sql-time/
-                new Horaire(idHoraire, date, heureDebut.toLocalTime(), heureFin.toLocalTime() );
+                rs.close();
             }
-        }catch(Exception e){
-            System.out.println(e);
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error!\n" + e);
         }
     }
     
-    public static void createTerrains()
-    {
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rslt = stm.executeQuery("select * from Terrain");
-            while(rslt.next()){
-                int idTerrain=rslt.getInt("idTerrain");
-                String nom = rslt.getString("nom");
-                String typeTerrain = rslt.getString("typeTerrain");
-                
-                new Terrain(idTerrain, nom, typeTerrain);
+    public static void createReferee() {
+        try {
+            connection = ConnectionFactory.createConnection();
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery("select * from Arbitre");
+                while (rs.next()) {
+                    int id = rs.getInt("idArbitre");
+                    String lastName = rs.getString("nom");
+                    String firstName = rs.getString("prenom");
+                    Date birthDate = rs.getDate("dateNaissance");
+                    String nationality = rs.getString("nationalite");
+                    String refereeType = rs.getString("typeArbitre");
+                    new Referee(id, lastName, firstName, birthDate,
+                            nationality, refereeType);
+                }
+                rs.close();
             }
-        }catch(Exception e){
-            System.out.println(e);
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error!\n" + e);
         }
     }
     
+    public static void createBallPicker() {
+        try {
+            connection = ConnectionFactory.createConnection();
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery("select * from Arbitre");
+                while (rs.next()) {
+                    int id = rs.getInt("idRamasseur");
+                    String lastName = rs.getString("nom");
+                    String firstName = rs.getString("prenom");
+                    Date birthDate = rs.getDate("dateNaissance");
+                    String nationality = rs.getString("nationalite");
+                    String club = rs.getString("club");
+                    int team = rs.getInt("equipe");
+                    new RamasseurBalle(id, lastName, firstName, birthDate, nationality, club, team, null);
+                }
+                rs.close();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error!\n" + e);
+        }
+    }
     
+    public static void createSchedule() {
+        try {
+            connection = ConnectionFactory.createConnection();
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery("select * from Horaire");
+                while (rs.next()) {
+                    int id = rs.getInt("idHoraire");
+                    Date date = rs.getDate("date");
+                    Time start = rs.getTime("heureDebut");
+                    Time end = rs.getTime("heureFin");
+                    new Horaire(id, date, start, end);
+                }
+                rs.close();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error!\n" + e);
+        }
+    }
+    
+    public static void createCourt() {
+        try {
+            connection = ConnectionFactory.createConnection();
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery("select * from Terrain");
+                while (rs.next()) {
+                    int id = rs.getInt("idTerrain");
+                    String name = rs.getString("nom");
+                    String courtType = rs.getString("typeTerrain");
+                    new Terrain(id, name, courtType);
+                }
+                rs.close();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error!\n" + e);
+        }
+    }
 }
