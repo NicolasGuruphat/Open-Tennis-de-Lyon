@@ -18,41 +18,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         ObjectFactory.createPlayers();
-        System.out.println(Player.getPlayerList());
-        ObjectFactory.createPlayers();
-        System.out.println(Player.getPlayerList());
-        
-        ObjectFactory.createSchedule();
-        System.out.println(Horaire.getListeHoraire());
-        ObjectFactory.createSchedule();
-        System.out.println(Horaire.getListeHoraire());
-        
+        ObjectFactory.createReferee();
+        ObjectFactory.createBallPicker();
         ObjectFactory.createCourt();
-        System.out.println(Terrain.getListeTerrain());
-        ObjectFactory.createCourt();
-        System.out.println(Terrain.getListeTerrain());
-        
         ObjectFactory.createSchedule();
-        System.out.println(Horaire.getListeHoraire().get(0));
-        
-        System.out.println("\n\n\n\n\n\n");
-        
         MatchFactory.createMatch();
-        System.out.println(Match.getListeMatch());
-        
-        Map<Player, ArrayList<Integer>> test = new HashMap<>();
-        
-        ArrayList<Integer> testArray = new ArrayList<>();
-        testArray.add(6);
-        testArray.add(6);
-        testArray.add(6);
-        
-        Player testPlayer = new Player(1, "bonsoir", "bonjour", null, "France");
-        System.out.println(testPlayer);
-        
-        test.put(testPlayer, testArray);
-        System.out.println(test);
-        
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        for (Match m : Match.getListeMatch()) {
+            System.out.println(m.getBallPickerTeam());
+        }
     }
 }

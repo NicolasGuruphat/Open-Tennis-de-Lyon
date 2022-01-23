@@ -37,6 +37,7 @@ public class RamasseurBalle extends Attendant {
         super(id, lastName, firstName, birthDate, nationality);
         this.club = club;
         this.matchsList = matchsList;
+        ballPickerList.add(this);
     }
    
    /** @pdGenerated default getter */

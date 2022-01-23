@@ -55,6 +55,19 @@ public class MatchFactory {
         return matchSchedule;
     }
     
+//    public static Match setFollowingMatch(int matchId, Connection connection) {
+//        String query = "select * from `Match` where idMatchSuivant = ?";
+//        Match match = null;
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(query);
+//            stmt.setInt(1, matchId);
+//            ResultSet rs = stmt.executeQuery();
+//            
+//        } catch (SQLException e) {
+//            System.err.println("ERROR!\n" + e);
+//        }
+//    }
+    
     private static void setMatchPlayers(Match match, Connection connection) {
         ObjectFactory.createPlayers();
         
@@ -166,6 +179,32 @@ public class MatchFactory {
         }
     }
     
+    public static void setFollowingMatch(Connection connection) {
+        ArrayList<Match> matchList = Match.getListeMatch();
+        try {
+            for (Match m : Match.getListeMatch()) {
+                int i = 0;
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(
+                        "select idMatchSuivant from `Match` where idMatch = "
+                                + Integer.toString(m.getId()));
+                rs.next();
+                Match match = null;
+                do {
+                    match = matchList.get(i);
+                    if (rs.getInt("idMatchSuivant") == match.getId()) {
+                        m.setFils(match);
+                    }
+                    i++;
+                } while (rs.getInt("idMatchSuivant") != match.getId() &&
+                        i != matchList.size());
+            }
+        } catch (SQLException e) {
+            System.err.println("ERROR!\n" + e);
+        }
+        
+    }
+    
     public static void createMatch() {
         connection = ConnectionFactory.createConnection();
         try {
@@ -177,6 +216,7 @@ public class MatchFactory {
                 int round = rs.getInt("tour");
                 int scheduleId = rs.getInt("idHoraire");
                 int courtId = rs.getInt("idTerrain");
+                int following = rs.getInt("idMatchSuivant");
                 
                 /*
                 We now need to get the schedule and court to create the Match
@@ -204,15 +244,13 @@ public class MatchFactory {
                 */
                 setMatchBallPickers(match, connection);
             }
-            rs.close();
+            setFollowingMatch(connection);
             stmt.close();
+            rs.close();
             connection.close();
-        } catch (SQLException e) {
-            System.err.println("ERROR!\n" + e);
-        } catch (NoCourtException e) {
-            System.err.println("ERROR!\n" + e);
-        } catch (NoScheduleException e) {
+        } catch (SQLException | NoCourtException | NoScheduleException e) {
             System.err.println("ERROR!\n" + e);
         }
+        
     }
 }
