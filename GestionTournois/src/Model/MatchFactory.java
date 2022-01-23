@@ -118,6 +118,54 @@ public class MatchFactory {
         match.setScore(score);
     }
     
+    private static void setMatchReferees(Match match, Connection connection) {
+        ObjectFactory.createReferee();
+        
+        String query = "select * from ListeArbitre where idMatch = " +
+                Integer.toString(match.getId());
+        
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                int id = rs.getInt("idArbitre");
+                for (Referee referee : Referee.getRefereeList()) {
+                    if (id == referee.getId()) {
+                        match.getArbitre().add(referee);
+                    }
+                }
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println("ERROR!\n" + e);
+        }
+    }
+    
+    public static void setMatchBallPickers(Match match, Connection connection) {
+        ObjectFactory.createBallPicker();
+        
+        String query = "select * from ListeRamasseurs where idMatch = " +
+                Integer.toString(match.getId());
+        
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                int id = rs.getInt("idRamasseur");
+                for (RamasseurBalle ballPicker : RamasseurBalle.getBallPickerList()) {
+                    if (id == ballPicker.getId()) {
+                        match.getBallPickerTeam().add(ballPicker);
+                    }
+                }
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println("ERROR!\n" + e);
+        }
+    }
+    
     public static void createMatch() {
         connection = ConnectionFactory.createConnection();
         try {
@@ -145,6 +193,16 @@ public class MatchFactory {
                 the Match in the ListeJoueur table
                 */
                 setMatchPlayers(match, connection);
+                
+                /*
+                We now add the referees to the match
+                */
+                setMatchReferees(match, connection);
+                
+                /*
+                Finally we get the ball pickers
+                */
+                setMatchBallPickers(match, connection);
             }
             rs.close();
             stmt.close();

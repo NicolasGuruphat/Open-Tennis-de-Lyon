@@ -11,7 +11,7 @@ import java.sql.Date;
 
 public class Referee extends Attendant {
     private String refereeType;
-    static ArrayList<Referee> refereeList = new ArrayList();
+    private static ArrayList<Referee> refereeList;
     ArrayList<Horaire> scheduleList = new ArrayList();
    
     protected void finalize() {
@@ -42,6 +42,10 @@ public class Referee extends Attendant {
     public void setListeHoraire(ArrayList<Horaire> listeHoraire) {
         this.scheduleList = listeHoraire;
     }
+    
+    public static void initRefereeList() {
+        refereeList = new ArrayList<>();
+    }
 
    
     public Referee(int id, String lastName, String firstName, 
@@ -65,9 +69,7 @@ public class Referee extends Attendant {
     @Override
     public String toString() {
         return "Referee{" + "refereeType=" + refereeType + 
-                ", scheduleList=" + scheduleList + '}';
+                ", scheduleList=" + scheduleList + 
+                '}';
     }
-    
-    
-
 }

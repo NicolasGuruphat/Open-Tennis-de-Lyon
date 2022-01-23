@@ -7,9 +7,7 @@ package Model;
 import Controller.*;
 
 import java.sql.*;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.LocalTime;
 
 /**
  *
@@ -44,6 +42,7 @@ public class ObjectFactory {
     
     public static void createReferee() {
         connection = ConnectionFactory.createConnection();
+        Referee.initRefereeList();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Arbitre");
@@ -54,7 +53,7 @@ public class ObjectFactory {
                 Date birthDate = rs.getDate("dateNaissance");
                 String nationality = rs.getString("nationalite");
                 String refereeType = rs.getString("typeArbitre");
-                new Referee(id, lastName, firstName, birthDate, 
+                new Referee(id, lastName, firstName, birthDate,
                         nationality, refereeType);
             }
             rs.close();
@@ -69,7 +68,7 @@ public class ObjectFactory {
         connection = ConnectionFactory.createConnection();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Arbitre");
+            ResultSet rs = stmt.executeQuery("select * from RamasseurBalles");
             while (rs.next()) {
                 int id = rs.getInt("idRamasseur");
                 String lastName = rs.getString("nom");
@@ -97,8 +96,8 @@ public class ObjectFactory {
             while (rs.next()) {
                 int id = rs.getInt("idHoraire");
                 Date date = rs.getDate("date");
-                Time start = rs.getTime("heureDebut");
-                Time end = rs.getTime("heureFin");
+                LocalTime start = rs.getTime("heureDebut").toLocalTime();
+                LocalTime end = rs.getTime("heureFin").toLocalTime();
                 Horaire.addHoraire(new Horaire(id, date, start, end));
             }
             rs.close();

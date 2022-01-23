@@ -15,7 +15,7 @@ import java.time.*;
 public class Horaire {
     private int id;
     private Date date;
-    private Time heureDebut, heureFin; // LocalTime
+    private LocalTime heureDebut, heureFin;
     private static ArrayList<Horaire> listeHoraire;
 
    protected void finalize() {
@@ -29,7 +29,7 @@ public class Horaire {
     * @param listeHoraire */
    
 
-    public Horaire(int id, Date date, Time heureDebut, Time heureFin) {
+    public Horaire(int id, Date date, LocalTime heureDebut, LocalTime heureFin) {
         this.id = id;
         this.date = date;
         this.heureDebut = heureDebut;
@@ -54,21 +54,21 @@ public class Horaire {
        date = newDate;
     }
    
-    public Time getHeureDebut() {
+    public LocalTime getHeureDebut() {
        return heureDebut;
     }
    
     /** @param newHeureDebut */
-    public void setHeureDebut(Time newHeureDebut) {
+    public void setHeureDebut(LocalTime newHeureDebut) {
        heureDebut = newHeureDebut;
     }
    
-    public Time getHeureFin() {
+    public LocalTime getHeureFin() {
        return heureFin;
     }
    
     /** @param newHeureFin */
-    public void setHeureFin(Time newHeureFin) {
+    public void setHeureFin(LocalTime newHeureFin) {
        heureFin = newHeureFin;
     }
    

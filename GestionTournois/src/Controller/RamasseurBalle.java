@@ -8,11 +8,13 @@ package Controller;
 
 import java.util.Collection;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class RamasseurBalle extends Attendant {
     private String club;
     private int team;
     public Collection<Match> matchsList;
+    private static ArrayList<RamasseurBalle> ballPickerList = new ArrayList();
    
     protected void finalize() {
         // TODO: implement
@@ -85,5 +87,16 @@ public class RamasseurBalle extends Attendant {
       if (listeMatchs != null)
          listeMatchs.clear();
    }
-
+   
+   public static ArrayList<RamasseurBalle> getBallPickerList() {
+       return ballPickerList;
+   }
+   
+   public static void initBallPickerList() {
+       ballPickerList = new ArrayList<>();
+   }
+   
+   public static void addBallPicker(RamasseurBalle ballPicker) {
+       ballPickerList.add(ballPicker);
+   }
 }

@@ -52,5 +52,7 @@ public class Main {
         
         test.put(testPlayer, testArray);
         System.out.println(test);
+        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
     }
 }

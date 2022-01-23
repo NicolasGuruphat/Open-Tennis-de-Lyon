@@ -209,7 +209,9 @@ public class Match {
         this.arbitre = arbitre;
     }
     
-    
+    public ArrayList<RamasseurBalle> getBallPickerTeam() {
+        return ballPickerTeam;
+    }
 
     public static ArrayList<Match> getListeMatch() {
         return listeMatch;
