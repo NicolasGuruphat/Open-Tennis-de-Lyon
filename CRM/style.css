@@ -1,16 +1,18 @@
 
 .fiche{
-    background-color: white;
-    text-align: center;
+    border:1px solid black;
+
     
 }
 
-.info{
-    background-color: red;
+#info{
+    background-color: rgb(255, 159, 49);
+    margin : 3%;
+    font-size: larger;
 }
 
-.interactionAjoute{
-    background-color: rgb(182, 109, 25);
+#interactionAjoute{
+    background-color: rgb(255, 159, 49);
     margin : 1%;
     border: 1px solid black;
 }

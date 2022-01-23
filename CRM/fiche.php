@@ -9,24 +9,7 @@
 		<img src="./logo.jpg">
 	</a>
 	<h1>Open tennis - Fiche VIP</h1>
-	<div class='interaction'>
-			<h2>Ajouter une interaction</h2>
-			
-			<form method='post' action="./fiche.php?id=<?=$_GET['id'];?>">
-				<label for='titre'>TITRE</label><br>
-				<input type='text' id='titre' name='titre' required><br><br>
-
-				<label for='status'>STATUS</label><br>
-				<input type='text' id='status' name='status' required><br><br>
-
-				<label for='action'>ACTION</label><br>
-				<input type='text' id='action' name='action' required size="100"><br><br>
-
-				<input type='submit' value='Submit'>
-			</form>
-	</div>
-	<div class="fiche">
-
+	
 	<?php
 	
 	include('connection.php');
@@ -71,6 +54,27 @@
 				echo "</br>";
 				echo "Nationalité : ".$data2['3'];
 				echo "</div>";
+				?>
+	<div class='interaction'>
+			<h2>Ajouter une interaction</h2>
+			
+			<form method='post' action="./fiche.php?id=<?=$_GET['id'];?>">
+				<label for='titre'>TITRE</label><br>
+				<input type='text' id='titre' name='titre' required><br><br>
+
+				<label for='status'>STATUS</label><br>
+				<input type='text' id='status' name='status' required><br><br>
+
+				<label for='action'>ACTION</label><br>
+				<input type='text' id='action' name='action' required size="100"><br><br>
+
+				<input type='submit' value='Submit'>
+			</form>
+	</div>
+	<div class="fiche">
+
+
+				<?php
 				if(isset($_POST['titre']) and isset($_POST['status']) and isset($_POST['action'])){
 					$titre=$_POST['titre'];
 					$status=$_POST['status'];
@@ -87,7 +91,7 @@
 				$query = $bdd->prepare("SELECT * FROM Interaction where idFiche = $id");
 				$query->execute();
 				
-				echo "</br>Interactions :";
+				echo "</br><h2 style=\"text-align:center\">Interactions</h2>";
 				while ($data = $query->fetch())  
 				{
 					echo "</br>";
