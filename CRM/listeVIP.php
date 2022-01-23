@@ -8,7 +8,6 @@ if(isset($_COOKIE["token"])){
         $query = $bdd->prepare('SELECT * from ListeVIP');
         $query->execute();
         while($data=$query->fetch()){
-            echo $data[0];
             if($data[1] != null){
                 $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche from ListeVIP join Joueur where Joueur.idJoueur=$data[0]");
             }
