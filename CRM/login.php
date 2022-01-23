@@ -24,3 +24,4 @@ if(isset($_POST["utilisateur"]) and isset($_POST["motDePasse"])){
         header('Location: '.$newURL);
     }
 }
+
