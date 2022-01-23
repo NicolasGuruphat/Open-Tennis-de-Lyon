@@ -9,17 +9,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-import Controller.Match;
-import Controller.Player;
-import java.util.*;
 
+import java.util.*;
+import Controller.*;
 
 /**
  *
  * @author nicog
  */
 public class DBDataFactory {
-static Connection connection = ConnectionFactory.createConnection();
+    static Connection connection = ConnectionFactory.createConnection();
     
     public static void createMatch(Match match)
     {
@@ -49,9 +48,22 @@ static Connection connection = ConnectionFactory.createConnection();
                 System.out.println("match ajouté à la BDD");
                 pstm.close();
             }
+            for(Referee arbitre : match.getArbitre()){
+                pstm = connection.prepareStatement("insert into `ListeArbitre` values (?, ?)");
+                pstm.setInt(1,arbitre.getId());
+                pstm.setInt(2,match.getId());
+                pstm.execute();
+                pstm.close();
+            }
+            for(RamasseurBalle ramasseur : match.getBallPickerTeam()){
+                pstm = connection.prepareStatement("insert into `ListeRamasseurs` values (?, ?)");
+                pstm.setInt(1,ramasseur.getId());
+                pstm.setInt(2, match.getId());
+                pstm.execute();
+                pstm.close();
+            }
         }catch(Exception e){
             System.out.println(e);
         }
-
     }
 }
