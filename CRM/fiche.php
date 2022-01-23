@@ -5,10 +5,11 @@
     </head>
         
 <body>
+
 	<a href="./index.php">
 		<img src="./logo.jpg">
 	</a>
-	<h1>Open tennis - Fiche VIP</h1>
+	<h1 style="text-align:center">Fiche VIP</h1>
 	
 	<?php
 	
@@ -26,7 +27,7 @@
         		$query->execute();
 				$data=$query->fetch();
 				if($data[1] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Joueur where Joueur.idJoueur=$id");
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation from ListeVIP join Joueur where Joueur.idJoueur=$id");
 				}
 				else if($data[2] != null){
 					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Arbitre where Arbitre.idArbitre=$id");  
@@ -45,15 +46,18 @@
 				$data2=$secondQuery->fetch();
 				echo "<div id=\"info\">";
 				echo "Identifiant : ".$id;
-				echo "</br>";
+				echo "</br></br>";
 				echo "Nom : ".$data2['0'];
-				echo "</br>";
+				echo "</br></br>";
 				echo "Prénom : ".$data2['1'];
-				echo "</br>";
+				echo "</br></br>";
 				echo "Date de naissance : ".$data2['2'];	
-				echo "</br>";
+				echo "</br></br>";
 				echo "Nationalité : ".$data2['3'];
-				echo "</div>";
+				echo "</br></br>";
+				echo "Priorité : ".$data2['4'];
+				echo "</div></br>";
+				echo "<img src=\"fakePhoto.jpg\" style = \"float :right;margin:3%\" > ";
 				?>
 	<div class='interaction'>
 			<h2>Ajouter une interaction</h2>
@@ -68,7 +72,7 @@
 				<label for='action'>ACTION</label><br>
 				<input type='text' id='action' name='action' required size="100"><br><br>
 
-				<input type='submit' value='Submit'>
+				<input type='submit' value='Valider'>
 			</form>
 	</div>
 	<div class="fiche">
@@ -107,7 +111,7 @@
 					echo "</br>";
 					echo "date : ".$date;
 					echo "</br>";
-					echo "action : ".$action;
+					echo "action : </br>".$action;
 					echo "</br>";
 					echo "</div>";
 				}
