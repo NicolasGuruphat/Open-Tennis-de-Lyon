@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import Controller.Match;
-import Controller.Joueur;
+import Controller.Player;
 import java.util.*;
 
 
@@ -35,8 +35,8 @@ static Connection connection = ConnectionFactory.createConnection();
             pstm.setInt(5,match.getTerrain().getId());
             pstm.execute();
             pstm.close();
-            for(Map.Entry<Joueur, ArrayList<Integer>> entry : match.getScore().entrySet()) {
-                Joueur joueur = entry.getKey();
+            for(Map.Entry<Player, ArrayList<Integer>> entry : match.getScore().entrySet()) {
+                Player joueur = entry.getKey();
                 ArrayList<Integer> score = entry.getValue();
                 pstm = connection.prepareStatement("insert into `ListeJoueurs` values (?,?,?,?,?,?,?,?)");
                 pstm.setInt(1,joueur.getId());

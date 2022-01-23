@@ -12,10 +12,10 @@ import java.util.*;
  * @author p2007545
  */
 public class Terrain {
-   private int id;
-   private String nom;
-   private String typeTerrain;
-   private static ArrayList<Terrain> listeTerrain = new ArrayList();
+    private int id;
+    private String nom;
+    private String typeTerrain;
+    private static ArrayList<Terrain> listeTerrain;
 
     public Terrain(int id, String nom, String typeTerrain) {
         this.id = id;
@@ -56,6 +56,14 @@ public class Terrain {
         Terrain.listeTerrain = listeTerrain;
     }
     
+    public static void initListeTerrain() {
+        listeTerrain = new ArrayList<>();
+    }
+    
+    public static void addTerrain(Terrain terrain) {
+        listeTerrain.add(terrain);
+    }
+    
     public static void printAll(){
         System.out.println("printAll terrain");
 
@@ -66,4 +74,12 @@ public class Terrain {
 
         }
 
+    @Override
+    public String toString() {
+        return "Terrain{" + "id=" + id + 
+                ", nom=" + nom + 
+                ", typeTerrain=" + typeTerrain + 
+                '}';
+    }
+    
 }

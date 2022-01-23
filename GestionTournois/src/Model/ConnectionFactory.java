@@ -20,6 +20,7 @@ public class ConnectionFactory {
     public static Connection createConnection(){
         try{
             connection = DriverManager.getConnection("jdbc:mariadb://iutdoua-web.univ-lyon1.fr/p2003245?user=p2003245&password=564094");
+//            connection = DriverManager.getConnection("jdbc:mariadb://localhost/open_tennis?user=root");
             connection.setAutoCommit(true);
             listeConnection.add(connection);
         }
