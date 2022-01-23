@@ -1,10 +1,39 @@
+
 .fiche{
-    background-color: aquamarine;
+    border:1px solid black;
+
+    
+}
+
+#info{
+    background-color: rgb(255, 159, 49);
+    margin : 3%;
+    font-size: larger;
+}
+
+#interactionAjoute{
+    background-color: rgb(255, 159, 49);
+    margin : 1%;
+    border: 1px solid black;
 }
 .interaction{
-    background-color: red;
+    background-color: rgb(255, 159, 49);
+    border : 2px solid grey;
+    margin : 5%;
+    text-align: center;
 }
+
 img {
     width: 150px;
     height: auto;
-  }
+}
+
+#identificationTotale{
+    text-align: center;
+}
+body{
+    background-color: rgb(230, 110, 67);
+}
+#deconnexion{
+    background-color: rgb(175, 230, 67);
+}
