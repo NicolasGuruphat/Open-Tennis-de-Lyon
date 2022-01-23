@@ -1,9 +1,26 @@
+
 .fiche{
-    background-color: aquamarine;
+    background-color: white;
+    text-align: center;
+    
 }
-.interaction{
+
+.info{
     background-color: red;
 }
+
+.interactionAjoute{
+    background-color: rgb(182, 109, 25);
+    margin : 1%;
+    border: 1px solid black;
+}
+.interaction{
+    background-color: rgb(255, 159, 49);
+    border : 2px solid grey;
+    margin : 5%;
+    text-align: center;
+}
+
 img {
     width: 150px;
     height: auto;
@@ -13,5 +30,8 @@ img {
     text-align: center;
 }
 body{
-    background-color: orangered;
+    background-color: rgb(230, 110, 67);
+}
+#deconnexion{
+    background-color: rgb(175, 230, 67);
 }
