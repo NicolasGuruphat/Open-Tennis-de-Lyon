@@ -207,6 +207,7 @@ public class MatchFactory {
     
     public static void createMatch() {
         connection = ConnectionFactory.createConnection();
+        Match.initListeMatch();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `Match`");

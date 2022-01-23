@@ -30,6 +30,7 @@ public class MatchsView {
     private void newWindow(int round) {
         tourSelect.setVisible(false);
         matchesList.getContentPane().removeAll();
+        matchesList.repaint();
         matchesListInit(round);
         matchesList.setVisible(true);
         matchesList.repaint();
@@ -71,12 +72,17 @@ public class MatchsView {
             newWindow(5);
             listTitle.setText("Match de finale");
         });
+        JButton exit = new JButton("Quitter");
+        exit.addActionListener(actionEvent -> {
+            System.exit(0);
+        });
         
         tourSelect.add(firstRound);
         tourSelect.add(secondRound);
         tourSelect.add(quarterFinal);
         tourSelect.add(semiFinal);
         tourSelect.add(finalRound);
+        tourSelect.add(exit);
         tourSelect.setLayout(new FlowLayout());
     }
     
@@ -96,6 +102,8 @@ public class MatchsView {
     }
     
     private void createMatchList(int round, JFrame frame) {
+        JList buttonList = new JList();        
+        
         ObjectFactory.createPlayers();
         ObjectFactory.createReferee();
         ObjectFactory.createBallPicker();
@@ -106,19 +114,31 @@ public class MatchsView {
         for (Match m : Match.getListeMatch()) {
             String player1 = "";
             String player2 = "";
+            System.out.println(m.getTour());
             if (m.getTour() == round) {
                 for (Player p : m.getScore().keySet()) {
-                    if (player1.isEmpty()) {
+                    if (player1.isEmpty() && player2.isEmpty()) {
                         player1 = p.getLastName() + " " + p.getFirstName();
-                    } else {
+                    } else if (!player1.isEmpty() && player2.isEmpty()) {
                         player2 = p.getLastName() + " " + p.getFirstName();
                     }
                 }
                 JButton match = new JButton(player1 + " - " + player2);
+                match.addActionListener(actionEvent -> {
+                    testMethod(m);
+                });
                 frame.add(match); 
             }
         }
         frame.repaint();
+    }
+    
+    private void testMethod(Match match) {
+        int id = match.getId();
+        JFrame frame = new JFrame();
+        frame.setSize(new Dimension(500, 200));
+        frame.setVisible(true);
+        frame.add(new JLabel(Integer.toString(id)));
     }
 
     public static void main(String[] args) {
