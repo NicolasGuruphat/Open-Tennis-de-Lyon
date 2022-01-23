@@ -4,19 +4,19 @@
  */
 package View;
 
-import BaseDeDonnees.ConnectionFactory;
-import BaseDeDonnees.ObjectFactory;
+import Model.ConnectionFactory;
+import Model.ObjectFactory;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
-import metier.Arbitre;
-import metier.Horaire;
-import metier.Joueur;
-import metier.Match;
-import metier.Terrain;
+import Controller.Referee;
+import Controller.Horaire;
+import Controller.Player;
+import Controller.Match;
+import Controller.Terrain;
 
 /**
  *
@@ -267,23 +267,23 @@ public class IHM extends javax.swing.JFrame {
        // System.out.println("create joueur");
        // ObjectFactory.createJoueurs();
         System.out.println("create Terrains");
-        ObjectFactory.createTerrains();
+        ObjectFactory.createCourt();
         System.out.println("create Horraires");
-        ObjectFactory.createHoraires();
+        ObjectFactory.createSchedule();
         
         System.out.println("create Joueurs");
-        ObjectFactory.createJoueurs();
+        ObjectFactory.createPlayers();
         
         System.out.println("create Arbitre");
-        ObjectFactory.createArbitres();
+        ObjectFactory.createReferee();
         
         
         System.out.println("PHASE 2 : ");
         
         System.out.println("taille terrain : " + Terrain.getListeTerrain().size());
         System.out.println("taille horaire : " + Horaire.getListeHoraire().size()); 
-        System.out.println("taille Arbitre : " + Arbitre.getListeArbitre().size());
-        System.out.println("taille joueur : " + Joueur.getListeJoueur().size()+ "\n\n");
+        System.out.println("taille Arbitre : " + Referee.getRefereeList().size());
+        System.out.println("taille joueur : " + Player.getPlayerList().size()+ "\n\n");
         
         
         Match.genererArbreMatch();
