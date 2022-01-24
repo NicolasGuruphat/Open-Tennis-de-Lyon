@@ -17,12 +17,11 @@ public class Match {
    
     private Terrain terrain;
     private Horaire horaire;
-    private boolean resultat;
+    
     private ArrayList<Referee> arbitre = new ArrayList();
+    private ArrayList<RamasseurBalle> ballPickerTeam = new ArrayList();
     
     private static ArrayList<Match> listeMatch = new ArrayList();
-    
-    private ArrayList<RamasseurBalle> ballPickerTeam = new ArrayList();
    
    
    
@@ -40,11 +39,15 @@ public class Match {
         this.arbitre.add(assignerArbitre(id,"Chaise"));
         for (int i = 0; i < 8; i++) { this.arbitre.add(assignerArbitre(id,"Ligne")); }
         
+        for (int i = 0; i < 12; i++) {
+            this.ballPickerTeam.add(RamasseurBalle.getBallPickerList().get((id%5)*12 + i)); 
+        }
+        
         this.horaire = listeHoraireTotaux.get((this.id)/5);
         this.terrain = listeTerrainTotaux.get((this.id)%5);
         
-        this.score.put(listeJoueurTotaux.get(2*id),new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
-        this.score.put(listeJoueurTotaux.get(2*id+1),new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
+        this.score.put(listeJoueurTotaux.get(2*id),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
+        this.score.put(listeJoueurTotaux.get(2*id+1),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
         
         
                 
@@ -71,9 +74,7 @@ public class Match {
         
         this.score.put(joueur1,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
         this.score.put(joueur2,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
-                
-                
-                
+ 
         listeMatch.add(this);
     }
     
@@ -83,14 +84,6 @@ public class Match {
         this.horaire = horaire;
         this.terrain = terrain;
         listeMatch.add(this);
-    }
-
-    public boolean isResultat() {
-        return resultat;
-    }
-
-    public void setResultat(boolean resultat) {
-        this.resultat = resultat;
     }
    
    
@@ -110,10 +103,10 @@ public class Match {
       // TODO: implement
    }
    
-    public Match creerMatch(Match match1, Match match2) {
-
+    public static void creerMatch(Match match1, Match match2) {
         int nouveauId = listeMatch.size();
         int nouveauTour;
+        Match match;
         
         if (nouveauId < 16){nouveauTour = 1;}
         
@@ -125,28 +118,11 @@ public class Match {
         
         else {nouveauTour = 5;}
         
+        match = new Match(nouveauId, nouveauTour, match1.comparerScore(), match2.comparerScore());
         
-        //System.out.println( ( ).getKey());
-        Integer cle;
-        //cle = match1.getScore().keySet();
-        System.out.println(match1.getScore().keySet());
-        
-        
-        //if match1.getScore().entrySet().getKey();
-        //nouveauScore.put(, null);
-        
-        //Récupérer Score des 2 matchs puis prendre le gagnant, Récupérer horraire et terrain valide
-
-
-
-
-        //nouveauMatch = new Match(id,tour,score,null,terrain,horaire);
-        
-        //match1.setFils(nouveauMatch);
-        //match2.setFils(nouveauMatch);
-
-        return null;
-        }
+        match1.setFils(match);
+        match2.setFils(match);
+    }
 
    public int getId() {
       return id;
@@ -294,15 +270,13 @@ public class Match {
     
             
 
-    public static void genererArbreMatch() 
-        {
+    public static void genererArbreMatch() {
             
         for( int i=0; i< 16; i++)
             {   
             new Match(i);
             }
-          
-      }
+    }
     
     public static void PrintAll()
         {
@@ -394,7 +368,6 @@ public class Match {
                 ", fils=" + fils + 
                 ", terrain=" + terrain + 
                 ", horaire=" + horaire + 
-                ", resultat=" + resultat + 
                 ", arbitre=" + arbitre + 
                 ", ballPickerTeam=" + ballPickerTeam + 
                 '}';
