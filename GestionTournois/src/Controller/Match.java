@@ -48,12 +48,6 @@ public class Match {
         
         this.score.put(listeJoueurTotaux.get(2*id),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
         this.score.put(listeJoueurTotaux.get(2*id+1),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
-        
-        
-                
-                
-                
-        listeMatch.add(this);
     }
    
     public Match(int id, int tour, Player joueur1, Player joueur2) {  
@@ -328,13 +322,17 @@ public class Match {
     
     
     public Player getJoueur(int numJoueur) {
-            
         ArrayList<Player> listeJoueur = new ArrayList();
-        int incrementeur = 0;
-        for(Map.Entry<Player, ArrayList<Integer>> entree : this.score.entrySet()) {
-            listeJoueur.set(incrementeur, entree.getKey());
-            incrementeur++;
-            }
+        
+//        int incrementeur = 0;
+//        for(Map.Entry<Player, ArrayList<Integer>> entree : this.score.entrySet()) {
+//            listeJoueur.set(incrementeur, entree.getKey());
+//            incrementeur++;
+//        }
+        
+        for (Player p : this.getScore().keySet()) {
+            listeJoueur.add(p);
+        }
         
         return listeJoueur.get(numJoueur);
     }
@@ -358,7 +356,29 @@ public class Match {
             if (fin == false) {this.terrain = nouveauTerrain;}
         }
     }
+    
+    public void VerifierScoreMatch() {
+        Match match2 = null;
 
+        if (this.getId() % 2 == 0) { match2 = Match.getListeMatch().get(this.getId() + 1 ); }
+
+        if (this.getId() % 2 == 1) { match2 = Match.getListeMatch().get(this.getId() - 1 ); }
+
+        boolean valide = true;
+        
+        ArrayList<Integer> nullList = new ArrayList(Arrays.asList(null, null, 
+                null, null, null));
+
+        for(Map.Entry<Player, ArrayList<Integer>> entry : this.getScore().entrySet()) {
+            if (entry.getValue() == nullList) {
+                valide = false;
+            }
+        }
+
+        if (valide == true) {
+            Match.creerMatch(this,match2);
+        }
+    }
 
     @Override
     public String toString() {

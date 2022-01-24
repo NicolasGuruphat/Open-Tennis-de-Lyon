@@ -8,13 +8,19 @@ import Controller.Terrain;
 import javax.swing.*;
 import java.awt.*;
 import Model.MatchFactory;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class MatchsView {
     private JFrame tourSelect = new JFrame();
     private JFrame matchesList = new JFrame();
+    private JFrame matchView = new JFrame();
+    private JFrame matchModifying = new JFrame();
     private JLabel listTitle;
+    private JButton test;
 
     public MatchsView() {
         initComponents();
@@ -23,12 +29,18 @@ public class MatchsView {
     private void initComponents() {
         // Initialising both frames
         tourSelectInit();
+        tourSelect.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         // We first use the tourSelect
         tourSelect.setVisible(true);
         tourSelect.repaint();
         
-        
+        ObjectFactory.createPlayers();
+        ObjectFactory.createReferee();
+        ObjectFactory.createBallPicker();
+        ObjectFactory.createSchedule();
+        ObjectFactory.createCourt();
+        MatchFactory.createMatch();        
     }
 
     private void newWindow(int round) {
@@ -45,7 +57,6 @@ public class MatchsView {
         frame.setSize(dimension);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     
     private void tourSelectInit() {
@@ -81,6 +92,8 @@ public class MatchsView {
             System.exit(0);
         });
         
+        test = secondRound;
+        
         tourSelect.add(firstRound);
         tourSelect.add(secondRound);
         tourSelect.add(quarterFinal);
@@ -92,10 +105,11 @@ public class MatchsView {
     
     private void matchesListInit(int round) {
         frameInit(matchesList, new Dimension(600, 800));
+        matchesList.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         listTitle = new JLabel();
         JButton backButton = new JButton("Retour");
         backButton.addActionListener(actionEvent -> {
-            matchesList.setVisible(false);
+            matchesList.dispose();
             tourSelect.setVisible(true);
         });
         
@@ -106,29 +120,15 @@ public class MatchsView {
     }
     
     private void createMatchList(int round, JFrame frame) {
-        JList buttonList = new JList();        
-        
-        ObjectFactory.createPlayers();
-        ObjectFactory.createReferee();
-        ObjectFactory.createBallPicker();
-        ObjectFactory.createSchedule();
-        ObjectFactory.createCourt();
-        MatchFactory.createMatch();
+        JList buttonList = new JList();
         
         for (Match m : Match.getListeMatch()) {
-            String player1 = "";
-            String player2 = "";
+            String matchName = "";
             if (m.getTour() == round) {
-                for (Player p : m.getScore().keySet()) {
-                    if (player1.isEmpty() && player2.isEmpty()) {
-                        player1 = p.getFirstName() + " " + p.getLastName();
-                    } else if (!player1.isEmpty() && player2.isEmpty()) {
-                        player2 = p.getFirstName() + " " + p.getLastName();
-                    }
-                }
-                JButton match = new JButton(player1 + " - " + player2);
+                matchName = playerToString(m.getJoueur(0), m.getJoueur(1));
+                JButton match = new JButton(matchName);
                 match.addActionListener(actionEvent -> {
-                    testMethod(m);
+                    showMatch(m);
                 });
                 frame.add(match);
             }
@@ -136,77 +136,162 @@ public class MatchsView {
         frame.repaint();
     }
     
-    private void testMethod(Match match) { // Le score, terrain
-        JFrame frame = new JFrame();
-        JLabel title = new JLabel();
+    private void showMatch(Match match) { // Le score, terrain
+        frameInit(matchView, new Dimension(500, 200));
+        matchView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        matchesList.setVisible(false);
+        matchView.setVisible(true);
+        
+        JLabel matchTitle = new JLabel();
         JLabel scheduleLabel = new JLabel();
         JLabel courtLabel = new JLabel();
         JLabel scoreLabel = new JLabel("À déterminer");
         
-        Player player1 = null;
-        Player player2 = null;
+        Player player1 = match.getJoueur(0);
+        Player player2 = match.getJoueur(1);
         Horaire schedule = match.getHoraire();
         Terrain court = match.getTerrain();
         
+        String affichageP1 = "";
+        String affichageP2 = "";
         
-        frame.setSize(new Dimension(500, 200));
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        ArrayList<Integer> scorePlayer1 = match.getScore().get(player1);
+        ArrayList<Integer> scorePlayer2 = match.getScore().get(player2);
         
+        System.out.println(scorePlayer1);
+        System.out.println(scorePlayer2);
         
-        for (Player p : match.getScore().keySet()) {
-            if (player1 == null && player2 == null) {
-                player1 = p;
-            } else if (player1 != null && player2 == null) {
-                player2 = p;
+        // Players
+        matchTitle.setText(playerToString(player1, player2));
+        matchView.repaint();
+        
+        // Score
+        for (Integer i1 : scorePlayer1) {
+            if (i1 != null) {
+                affichageP1 = affichageP1.concat(Integer.toString(i1) + " ");
             }
         }
-        ArrayList<Integer> scoreP1 = match.getScore().get(player1);
-        ArrayList<Integer> scoreP2 = match.getScore().get(player2);
         
-        Integer setP1 = scoreP1.get(0);
-        Integer setP2 = scoreP2.get(0);
-        
-        String affichageScoreP1 = "";
-        String affichageScoreP2 = "";
-                
-        title.setText(player1.getFirstName() + " " + player1.getLastName() +
-                " - " + player2.getFirstName() + " " + player2.getLastName());
-        
-        int i = 0;
-        int j = 0;
-        
-        while (setP1 != null && i < scoreP1.size()) {
-            affichageScoreP1 = affichageScoreP1.concat(Integer.toString(setP1) 
-                    + " ");
-            i++;
-            setP1 = scoreP1.get(i);
+        for (Integer i2 : scorePlayer2) {
+            if (i2 != null) {
+                affichageP2 = affichageP2.concat(Integer.toString(i2) + " ");
+            }
         }
         
-        while (setP2 != null && j < scoreP2.size()) {
-            affichageScoreP2 = affichageScoreP2.concat(Integer.toString(setP2) 
-                    + " ");
-            j++;
-            setP2 = scoreP2.get(j);
+        if (!affichageP1.equals("") && !affichageP2.equals("")) {
+            scoreLabel.setText(affichageP1 + " - " + affichageP2);
         }
         
-        if (!affichageScoreP1.equals("") || !affichageScoreP2.equals("")) {
-            scoreLabel.setText(affichageScoreP1 + " - " + affichageScoreP2);
-        }
-        frame.repaint();
+        // Schedule
+        scheduleLabel.setText("Début : " + schedule.getHeureDebut());
+        
+        // Court
+        courtLabel.setText("Terrain : " + court.getNom());
+        
+        // Modify action
+        JButton modify = new JButton("Modifier");
+        modify.addActionListener(actionEvent -> {
+            modifyMatch(match);
+        });
         
         JButton exit = new JButton("Retour");
         exit.addActionListener(actionEvent -> {
-            frame.getContentPane().removeAll();
-            frame.dispose();
+            matchView.getContentPane().removeAll();
+            matchView.dispose();
+            matchesList.setVisible(true);
         });
         
-        frame.add(title);
-        frame.add(exit);
-        frame.add(scoreLabel);
-        frame.setLayout(new FlowLayout());
+        matchView.add(matchTitle);
+        matchView.add(scoreLabel);
+        matchView.add(scheduleLabel);
+        matchView.add(courtLabel);
+        matchView.add(modify);
+        matchView.add(exit);
+        matchView.setLayout(new FlowLayout());
+    }
+    
+    private void modifyMatch(Match m) {
+        Player player1 = m.getJoueur(0);
+        Player player2 = m.getJoueur(1);
+        String[] games = { null, "0", "1", "2", "3", "4", "5", "6", "7", "8", 
+            "9", "10"};
+        
+        frameInit(matchModifying, new Dimension(500, 500));
+        matchModifying.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        matchModifying.setVisible(true);
+        matchModifying.getContentPane().removeAll();
+        
+        JLabel title = new JLabel(playerToString(player1, player2));
+        ArrayList<JComboBox> cbList = new ArrayList<>();
+        
+        for (int i = 0; i < 10; i++) {
+            JComboBox cb = new JComboBox(games);
+            matchModifying.add(cb);
+            cbList.add(cb);
+        }
+        
+        System.out.println(cbList);
+        
+        JButton confirm = new JButton("Valider");
+        confirm.addActionListener(actionEvent -> {
+            setMatchScore(m, cbList);
+        });
+        
+        matchModifying.setLayout(new FlowLayout());
+        matchModifying.add(title);
+    }
+    
+    private void setMatchScore(Match m, ArrayList<JComboBox> cbList) {
+        int i = 0;
+        int notNullPlayer1 = 0;
+        int notNullPlayer2 = 0;
+        
+        boolean lock1 = false;
+        boolean lock2 = false;
+        boolean good = true;
+        boolean isNull = false;
+        
+        ArrayList<Integer> scoreListPlayer1 = new ArrayList();
+        ArrayList<Integer> scoreListPlayer2 = new ArrayList();
+        Map<Player, ArrayList<Integer>> newScore = new HashMap();
+        
+        Player p1 = m.getJoueur(0);
+        Player p2 = m.getJoueur(1);
+        
+        // pas valide : null -> valeur, nombre de valeurs non nulles égales
+        for (i = 0; i < cbList.size(); i++) {
+            JComboBox cb = cbList.get(i);
+            if (i <= 5 && cb.getSelectedItem() != null && !lock1) {
+                notNullPlayer1++;
+                scoreListPlayer1.add(Integer.parseInt(cb.getSelectedItem().toString()));
+            } else if (i >= 6 && cb.getSelectedItem() != null && !lock2) {
+                notNullPlayer2++;
+                scoreListPlayer2.add(Integer.parseInt(cb.getSelectedItem().toString()));
+            } else if (i <= 5 && cb.getSelectedItem() == null) {
+                lock1 = true;
+            } else if (i >= 6 && cb.getSelectedItem() == null) {
+                lock2 = true;
+            } else {
+                System.err.println("ERROR!\n");
+                good = false;
+                break;
+            }
+        }
+        
+        if (notNullPlayer1 != notNullPlayer2) {
+            good = false;
+        } else if (good) {
+            newScore.put(p1, scoreListPlayer1);
+            newScore.put(p2, scoreListPlayer2);
+            m.setScore(newScore);
+            m.VerifierScoreMatch();
+        }
+    }
+    
+    private String playerToString(Player p1, Player p2) {
+        String matchName = p1.getFirstName() + " " + p1.getLastName() + " - " +
+                p2.getFirstName() + " " + p2.getLastName();
+        return matchName;
     }
 
     public static void main(String[] args) {
