@@ -70,9 +70,15 @@ public class DBDataFactory {
             for(Map.Entry<Player, ArrayList<Integer>> entry : match.getScore().entrySet()) {
                 Player joueur = entry.getKey();
                 ArrayList<Integer> score = entry.getValue();
-                PreparedStatement pstm = connection.prepareStatement("update ListeJoueurs set set1=? set2=? set3=? set4=? set5=? where idJoueur = ? and idMatch = ?");
-                for(int i=1;i<score.size()+1;i++){
-                    pstm.setInt(i, score.get(i));
+                int i;
+                PreparedStatement pstm = connection.prepareStatement("update ListeJoueurs set set1=?, set2=?, set3=?, set4=?, set5=? where idJoueur = ? and idMatch = ?");
+                for(i=1;i<score.size()+1;i++){
+                    System.out.println(score.get(i-1));
+                   
+                    pstm.setInt(i, score.get(i-1));
+                }
+                for(int j=i;j<6-score.size()+1;j++){
+                    pstm.setNull(j, java.sql.Types.INTEGER);
                 }
                 pstm.setInt(6, joueur.getId());
                 pstm.setInt(7,match.getId());
