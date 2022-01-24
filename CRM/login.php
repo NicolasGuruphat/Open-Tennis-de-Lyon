@@ -13,12 +13,12 @@ if(isset($_POST["utilisateur"]) and isset($_POST["motDePasse"])){
     if($data[1]==(hash('sha512',$mdp))){
         //Token::Log();
         setcookie("try",false);
-        setcookie("token",true,time()+60*15);
+        setcookie("token",true,time()+60*30);
         $newURL="./listeVIP.php";
         header('Location: '.$newURL);
     }
     else{
-        setcookie("try",true,time()+60*15);
+        setcookie("try",true,time()+60*30);
         setcookie("token",false);
         $newURL="./index.php";
         header('Location: '.$newURL);
