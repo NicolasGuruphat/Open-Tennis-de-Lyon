@@ -3,9 +3,12 @@ package View;
 import Model.ObjectFactory;
 import Controller.Match;
 import Controller.Player;
+import Controller.Horaire;
+import Controller.Terrain;
 import javax.swing.*;
 import java.awt.*;
 import Model.MatchFactory;
+import java.util.ArrayList;
 
 public class MatchsView {
     private JFrame tourSelect = new JFrame();
@@ -118,27 +121,60 @@ public class MatchsView {
             if (m.getTour() == round) {
                 for (Player p : m.getScore().keySet()) {
                     if (player1.isEmpty() && player2.isEmpty()) {
-                        player1 = p.getLastName() + " " + p.getFirstName();
+                        player1 = p.getFirstName() + " " + p.getLastName();
                     } else if (!player1.isEmpty() && player2.isEmpty()) {
-                        player2 = p.getLastName() + " " + p.getFirstName();
+                        player2 = p.getFirstName() + " " + p.getLastName();
                     }
                 }
                 JButton match = new JButton(player1 + " - " + player2);
                 match.addActionListener(actionEvent -> {
                     testMethod(m);
                 });
-                frame.add(match); 
+                frame.add(match);
             }
         }
         frame.repaint();
     }
     
-    private void testMethod(Match match) {
-        int id = match.getId();
+    private void testMethod(Match match) { // Le score, terrain
         JFrame frame = new JFrame();
+        JLabel title = new JLabel();
+        JLabel scheduleLabel = new JLabel();
+        JLabel courtLabel = new JLabel();
+        JLabel scoreLabel = new JLabel();
+        
+        Player player1 = null;
+        Player player2 = null;
+        Horaire schedule = match.getHoraire();
+        Terrain court = match.getTerrain();
+        
+        
         frame.setSize(new Dimension(500, 200));
         frame.setVisible(true);
-        frame.add(new JLabel(Integer.toString(id)));
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        
+        for (Player p : match.getScore().keySet()) {
+            if (player1 == null && player2 == null) {
+                player1 = p;
+            } else if (player1 != null && player2 == null) {
+                player2 = p;
+            }
+        }
+        ArrayList<Integer> scoreP1 = match.getScore().get(player1);
+        ArrayList<Integer> scoreP2 = match.getScore().get(player2);
+                
+        title.setText(player1.getFirstName() + " " + player1.getLastName() +
+                " - " + player2.getFirstName() + " " + player2.getLastName());
+        
+        JButton exit = new JButton("Retour");
+        exit.addActionListener(actionEvent -> {
+            frame.getContentPane().removeAll();
+            frame.dispose();
+        });
+        
+        frame.add(title);
+        frame.add(exit);
+        frame.setLayout(new FlowLayout());
     }
 
     public static void main(String[] args) {
