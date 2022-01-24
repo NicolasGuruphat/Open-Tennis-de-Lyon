@@ -5,10 +5,9 @@
     </head>
         
 <body>
+ 
 
-	<a href="./index.php">
-		<img src="./logo.jpg">
-	</a>
+	<a href=listeVIP.php>Retour liste</a>
 	<h1 style="text-align:center">Fiche VIP</h1>
 	
 	<?php
