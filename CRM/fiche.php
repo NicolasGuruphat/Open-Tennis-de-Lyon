@@ -33,7 +33,7 @@
 					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join Arbitre where Arbitre.idArbitre=$data[2]");  
 				}
 				else if($data[3] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$data[3]");           
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join RamasseurBalles where RamasseurBalles.idRamasseur=$data[3]");           
 				}
 				else if ($data[4]!= null){
 					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join AutreVIP where AutreVIP.idAutreVIP=$data[4]");           

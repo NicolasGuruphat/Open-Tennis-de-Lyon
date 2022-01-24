@@ -27,7 +27,7 @@
                         $typeVIP= "Arbitre";
                     }
                     else if($data[3] != null){
-                        $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche, notation from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$data[3]");               
+                        $secondQuery = $bdd->prepare("SELECT nom,prenom,ListeVIP.idFiche, notation from ListeVIP join RamasseurBalles where RamasseurBalles.idRamasseur=$data[3]");               
                         $typeVIP= "Ramasseur de balles";
                     }
                     else if ($data[4]!= null){
