@@ -10,9 +10,7 @@ package Tests;
  */
 public class Tests {
     public static void main(String[] args) {
-        String string1 = "Coucou";
-        String string2 = "toi";
-        String both = string1 + " " + string2;
-        System.out.println(both);
+        Object test = null;
+        System.out.print(test);
     }
 }
