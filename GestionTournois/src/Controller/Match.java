@@ -298,19 +298,17 @@ public class Match {
 
             int sommeScore1 = 0;
             int sommeScore2 = 0;
-
-            int incrementeur = 0;
-        
-        
+            
+            System.out.println(this.getScore());
             for(Map.Entry<Player, ArrayList<Integer>> entry : this.score.entrySet()) {
-                listeJoueur.set(incrementeur, entry.getKey());
-                listeScore.set(incrementeur, entry.getValue());
-                incrementeur++;
+                listeJoueur.add(entry.getKey());
+                listeScore.add(entry.getValue());
             }
-
-            for (int i = 0; i < 6 ;i++ ) {
-                sommeScore1 = listeScore.get(0).get(i);
-                sommeScore2 = listeScore.get(1).get(i);
+            
+            System.out.println(listeScore.toString());
+            for (int i = 0; i < listeScore.get(0).size() ;i++ ) {
+                sommeScore1 += listeScore.get(0).get(i);
+                sommeScore2 += listeScore.get(1).get(i);
             }
 
             if (sommeScore1 > sommeScore2) { joueurGagnant = listeJoueur.get(0); }

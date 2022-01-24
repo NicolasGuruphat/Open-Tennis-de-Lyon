@@ -5,6 +5,7 @@ import Controller.Match;
 import Controller.Player;
 import Controller.Horaire;
 import Controller.Terrain;
+import Model.DBDataFactory;
 import javax.swing.*;
 import java.awt.*;
 import Model.MatchFactory;
@@ -239,6 +240,7 @@ public class MatchsView {
         
         matchModifying.setLayout(new FlowLayout());
         matchModifying.add(title);
+        matchModifying.add(confirm);
     }
     
     private void setMatchScore(Match m, ArrayList<JComboBox> cbList) {
@@ -260,31 +262,37 @@ public class MatchsView {
         
         // pas valide : null -> valeur, nombre de valeurs non nulles égales
         for (i = 0; i < cbList.size(); i++) {
+            System.out.println("a");
             JComboBox cb = cbList.get(i);
-            if (i <= 5 && cb.getSelectedItem() != null && !lock1) {
+            System.out.println(cb.getSelectedItem());
+            if (i <= 4 && cb.getSelectedItem() != null && !lock1) {
                 notNullPlayer1++;
                 scoreListPlayer1.add(Integer.parseInt(cb.getSelectedItem().toString()));
-            } else if (i >= 6 && cb.getSelectedItem() != null && !lock2) {
+            } else if (i >= 5 && cb.getSelectedItem() != null && !lock2) {
                 notNullPlayer2++;
                 scoreListPlayer2.add(Integer.parseInt(cb.getSelectedItem().toString()));
-            } else if (i <= 5 && cb.getSelectedItem() == null) {
+            } else if (i <= 4 && cb.getSelectedItem() == null) {
                 lock1 = true;
-            } else if (i >= 6 && cb.getSelectedItem() == null) {
+            } else if (i >= 5 && cb.getSelectedItem() == null) {
                 lock2 = true;
-            } else {
+            } else if (cb.getSelectedItem() != null && (lock1 || lock2)) {
                 System.err.println("ERROR!\n");
                 good = false;
-                break;
             }
         }
+        
+        System.out.println(notNullPlayer1 + " " + notNullPlayer2);
         
         if (notNullPlayer1 != notNullPlayer2) {
             good = false;
         } else if (good) {
+            System.out.println("je rentre");
             newScore.put(p1, scoreListPlayer1);
             newScore.put(p2, scoreListPlayer2);
             m.setScore(newScore);
+            System.out.println(m.getScore());
             m.VerifierScoreMatch();
+            DBDataFactory.updateScore(m);
         }
     }
     

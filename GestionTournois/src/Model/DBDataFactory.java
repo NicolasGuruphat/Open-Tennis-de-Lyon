@@ -62,7 +62,7 @@ public class DBDataFactory {
                 pstm.close();
             }
         }catch(Exception e){
-            System.out.println(e);
+            System.err.println(e);
         }
     }
     public static void updateScore(Match match){
@@ -70,17 +70,18 @@ public class DBDataFactory {
             for(Map.Entry<Player, ArrayList<Integer>> entry : match.getScore().entrySet()) {
                 Player joueur = entry.getKey();
                 ArrayList<Integer> score = entry.getValue();
-                PreparedStatement pstm = connection.prepareStatement("update `ListeJoueurs set set1=(?) set2=(?) set3=(?) set4=(?) set5=(?) where idJoueur = (?) and idMatch = (?)");
+                PreparedStatement pstm = connection.prepareStatement("update ListeJoueurs set set1=? set2=? set3=? set4=? set5=? where idJoueur = ? and idMatch = ?");
                 for(int i=1;i<score.size()+1;i++){
                     pstm.setInt(i, score.get(i));
                 }
+                pstm.setInt(6, joueur.getId());
                 pstm.setInt(7,match.getId());
                 pstm.execute();
                 System.out.println("match modifié");
                 pstm.close();
             }
-        }catch(Exception e){
-            System.out.println(e);
+        } catch(Exception e){
+            System.err.println(e);
         }
     }
 }
