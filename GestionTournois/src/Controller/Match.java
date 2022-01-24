@@ -356,7 +356,29 @@ public class Match {
             if (fin == false) {this.terrain = nouveauTerrain;}
         }
     }
+    
+    public void VerifierScoreMatch() {
+        Match match2 = null;
 
+        if (this.getId() % 2 == 0) { match2 = Match.getListeMatch().get(this.getId() + 1 ); }
+
+        if (this.getId() % 2 == 1) { match2 = Match.getListeMatch().get(this.getId() - 1 ); }
+
+        boolean valide = true;
+        
+        ArrayList<Integer> nullList = new ArrayList(Arrays.asList(null, null, 
+                null, null, null));
+
+        for(Map.Entry<Player, ArrayList<Integer>> entry : this.getScore().entrySet()) {
+            if (entry.getValue() == nullList) {
+                valide = false;
+            }
+        }
+
+        if (valide == true) {
+            Match.creerMatch(this,match2);
+        }
+    }
 
     @Override
     public String toString() {

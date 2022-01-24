@@ -10,7 +10,9 @@ import java.awt.*;
 import Model.MatchFactory;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class MatchsView {
     private JFrame tourSelect = new JFrame();
@@ -232,44 +234,59 @@ public class MatchsView {
         
         JButton confirm = new JButton("Valider");
         confirm.addActionListener(actionEvent -> {
-//            setMatchScore(m, cbList);
+            setMatchScore(m, cbList);
         });
         
         matchModifying.setLayout(new FlowLayout());
         matchModifying.add(title);
     }
     
-//    private void setMatchScore(Match m, ArrayList<JComboBox> cbList) {
-//        int i = 0;
-//        boolean isNull = false;
-//        int notNullPlayer1 = 0;
-//        int notNullPlayer2 = 0;
-//        boolean lock1 = false;
-//        boolean lock2 = false;
-//        ArrayList<Integer> scoreList = new ArrayList();
-//        // pas valide : null -> valeur, nombre de valeurs non nulles égales
-//        
-//        for (i = 0; i < cbList.size(); i++) {
-//            JComboBox cb = cbList.get(i);
-//            if (i <= 5 && cb.getSelectedItem() != null && !lock1) {
-//                notNullPlayer1++;
-//                scoreList.add(Integer.parseInt(cb.getSelectedItem().toString()));
-//            } else if (i >= 6 && cb.getSelectedItem() != null && !lock2) {
-//                notNullPlayer2++;
-//                scoreList.add(Integer.parseInt(cb.getSelectedItem().toString()));
-//            } else if (i <= 5 && cb.getSelectedItem() == null) {
-//                lock1 = true;
-//            } else if (i >= 6 && cb.getSelectedItem() == null) {
-//                lock2 = true;
-//            } else {
-//                System.err.println("ERROR!\n");
-//                break;
-//            }
-//        }
-//        
-//        if (notNullPlayer1 != notNullPlayer2) {
-//        }
-//    }
+    private void setMatchScore(Match m, ArrayList<JComboBox> cbList) {
+        int i = 0;
+        int notNullPlayer1 = 0;
+        int notNullPlayer2 = 0;
+        
+        boolean lock1 = false;
+        boolean lock2 = false;
+        boolean good = true;
+        boolean isNull = false;
+        
+        ArrayList<Integer> scoreListPlayer1 = new ArrayList();
+        ArrayList<Integer> scoreListPlayer2 = new ArrayList();
+        Map<Player, ArrayList<Integer>> newScore = new HashMap();
+        
+        Player p1 = m.getJoueur(0);
+        Player p2 = m.getJoueur(1);
+        
+        // pas valide : null -> valeur, nombre de valeurs non nulles égales
+        for (i = 0; i < cbList.size(); i++) {
+            JComboBox cb = cbList.get(i);
+            if (i <= 5 && cb.getSelectedItem() != null && !lock1) {
+                notNullPlayer1++;
+                scoreListPlayer1.add(Integer.parseInt(cb.getSelectedItem().toString()));
+            } else if (i >= 6 && cb.getSelectedItem() != null && !lock2) {
+                notNullPlayer2++;
+                scoreListPlayer2.add(Integer.parseInt(cb.getSelectedItem().toString()));
+            } else if (i <= 5 && cb.getSelectedItem() == null) {
+                lock1 = true;
+            } else if (i >= 6 && cb.getSelectedItem() == null) {
+                lock2 = true;
+            } else {
+                System.err.println("ERROR!\n");
+                good = false;
+                break;
+            }
+        }
+        
+        if (notNullPlayer1 != notNullPlayer2) {
+            good = false;
+        } else if (good) {
+            newScore.put(p1, scoreListPlayer1);
+            newScore.put(p2, scoreListPlayer2);
+            m.setScore(newScore);
+            m.VerifierScoreMatch();
+        }
+    }
     
     private String playerToString(Player p1, Player p2) {
         String matchName = p1.getFirstName() + " " + p1.getLastName() + " - " +
