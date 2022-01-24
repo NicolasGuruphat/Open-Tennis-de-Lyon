@@ -6,6 +6,8 @@
     </head>
     <body>
         <div id="identificationTotale">
+		    <img src="./logo.jpg">
+
             <h1>Identification</h1>
 
             <?php

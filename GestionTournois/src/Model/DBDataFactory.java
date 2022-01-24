@@ -37,12 +37,11 @@ public class DBDataFactory {
             for(Map.Entry<Player, ArrayList<Integer>> entry : match.getScore().entrySet()) {
                 Player joueur = entry.getKey();
                 ArrayList<Integer> score = entry.getValue();
-                pstm = connection.prepareStatement("insert into `ListeJoueurs` values (?,?,?,?,?,?,?,?)");
+                pstm = connection.prepareStatement("insert into `ListeJoueurs` values (?,?,?,?,?,?,?)");
                 pstm.setInt(1,joueur.getId());
                 pstm.setInt(2,match.getId());
-                pstm.setBoolean(3,false);
                 for(int i=0;i<score.size();i++){
-                    pstm.setInt(4+i, score.get(i));
+                    pstm.setInt(3+i, score.get(i));
                 }
                 pstm.execute();
                 System.out.println("match ajouté à la BDD");
