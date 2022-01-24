@@ -49,17 +49,11 @@ public class Match {
         this.score.put(listeJoueurTotaux.get(2*id),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
         this.score.put(listeJoueurTotaux.get(2*id+1),new ArrayList<Integer>(Arrays.asList(null,null,null,null,null)));
         
-        
-                
-                
-                
-        listeMatch.add(this);
     }
    
     public Match(int id, int tour, Player joueur1, Player joueur2) {  
         
         ArrayList<Horaire>listeHoraireTotaux = Horaire.getListeHoraire();
-        ArrayList<Terrain>listeTerrainTotaux = Terrain.getListeTerrain();
         
         this.id = id;
         this.tour = tour;
@@ -70,7 +64,7 @@ public class Match {
         for (int i = 0; i < 8; i++) { this.arbitre.add(assignerArbitre(id,"Ligne")); }
         
         this.horaire = listeHoraireTotaux.get((this.id)/5);
-        this.terrain = listeTerrainTotaux.get((this.id)%5);
+        this.terrain = this.assignerTerrain();
         
         this.score.put(joueur1,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
         this.score.put(joueur2,new ArrayList<Integer>(Arrays.asList(0,0,0,0,0)));
@@ -268,8 +262,56 @@ public class Match {
         }
     
     
-            
+public Terrain assignerTerrain(){  
+        
+    ArrayList<Terrain> listeTerrain = Terrain.getListeTerrain();
+    ArrayList<Match> listeMatch = Match.getListeMatch();
+    
+    boolean finTerrain = false;
+    boolean finMatch = false;
+    int i = 0; 
+    int j = 0;
+    
+    Terrain resultat = null;
+    
 
+    //On parcours chaque terrain 
+    while(i < listeTerrain.size() && finTerrain == false){
+        
+        //Pour chaque terrain, on parcours tous les matchs
+        while (j < listeMatch.size() && finMatch == false){
+            //Si le terrain est déja pris par un match alors fonMatch = true
+            if (this.horaire == listeMatch.get(j).getHoraire() && listeTerrain.get(i) == listeMatch.get(j).getTerrain() ){
+                    finMatch = true;
+                              
+            }
+            j++;
+            
+        }
+        //Si finMatch == false alors on peut assigner le terrain
+        if (finMatch == false){
+                finTerrain = true;
+                        
+            }
+            //Sinon on passe au terrain suivant
+            else if (finMatch == true){
+            finMatch = false;        
+            }
+        i++;
+    }
+    
+    if (finTerrain == false) {
+        System.out.println("Impossible de changer le terrain");
+    
+    }
+    else if (finTerrain == true) {
+        resultat = listeTerrain.get(i);
+    }
+    
+    return resultat;
+    
+}
+    
     public static void genererArbreMatch() {
             
         for( int i=0; i< 16; i++)
