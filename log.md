@@ -137,6 +137,10 @@ Début du système d'authentification :
 ### Nicolas
 -Fin du système d'authentification : accès à la page de liste des VIP. Utilisation de l'algo de hashage sha512 afin de stocker le mdp de manière sécurisé. Lors de l'authentification, l'input est hashé pour effectuer la correspondance  
 
+#### Adrien  
+-Fin du constructeur horraire  
+
+
 ## 18/01 
 ### Nicolas
 Ajout de cookies qui gèrent l'authentification :
@@ -147,12 +151,42 @@ Ajout de cookies qui gèrent l'authentification :
 
 Bug d'auto-increment reglé (il bloquait le fait d'ajouter plusieurs interactions). Le back-end est donc maintenant complétement fonctionnel
 
-Champs lors de la création d'un interactions sont maintenant obligatoires
+Champs lors de la création d'un interactions sont maintenant obligatoires  
+
+#### Adrien  
+-Ajout du constructeur Terrain  
+-debut de la méthode générerArbre()  
+
 
 ## 19/01 (séance du matin) 
 ### Nicolas
-Restructuration globale de la BDD avec Hugo car beaucoup de problèmes avec les clés étrangères 
+Restructuration globale de la BDD avec Hugo car beaucoup de problèmes avec les clés étrangères  
+
+#### Adrien  
+-Debut de la méthode créerMatch() a partir de 2 matchs précédents  
+-début de la méthode assignerArbitre()
+
 
 ## 19/01 (séance autonomie à 12h30 + séance de l'après midi)
 ### Nicolas
-Adaptation de l'application web à la nouvelle base de données
+Adaptation de l'application web à la nouvelle base de données  
+
+#### Adrien  
+-Fin de la méthode générerArbre()    
+
+
+## 20/01  
+
+#### Adrien  
+-Fin de la méthode assignerArbitre()
+-Fin de la méthode créerMatch()
+-Ajout d'un deuxieme constructeur Match (il y a des matchs crée par générerArbre() et des matchs crée par créerMatch() )  
+
+## 23/01 (séance autonomie de 4 heures)  
+
+#### Adrien  
+
+-Ajout des méthodes comparerScore(), modifierTerrain(), ModifierScore()  
+-Ajout modification du constructeur RamasseurBalle + ajout attribut listeRamasseurs  
+-Début de la méthode VérifierScoreMatch qui sera associé a un écouteur dans la partie IHM  
+
