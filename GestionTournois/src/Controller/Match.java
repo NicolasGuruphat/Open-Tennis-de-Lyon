@@ -321,6 +321,70 @@ public class Match {
                     //System.out.println("match Referee nationnalité : " + listeMatch.get(i).getArbitre().getNationality() + "\n\n" );
                 }
         }
+    
+        public Player comparerScore() {
+            Player joueurGagnant; 
+        
+            ArrayList<Player> listeJoueur = new ArrayList();
+            ArrayList<ArrayList<Integer>> listeScore = new ArrayList();
+
+            int sommeScore1 = 0;
+            int sommeScore2 = 0;
+
+            int incrementeur = 0;
+        
+        
+            for(Map.Entry<Player, ArrayList<Integer>> entry : this.score.entrySet()) {
+                listeJoueur.set(incrementeur, entry.getKey());
+                listeScore.set(incrementeur, entry.getValue());
+                incrementeur++;
+            }
+
+            for (int i = 0; i < 6 ;i++ ) {
+                sommeScore1 = listeScore.get(0).get(i);
+                sommeScore2 = listeScore.get(1).get(i);
+            }
+
+            if (sommeScore1 > sommeScore2) { joueurGagnant = listeJoueur.get(0); }
+            else { joueurGagnant = listeJoueur.get(1); }
+
+
+            return joueurGagnant;
+        }
+    
+    
+    public Player getJoueur(int numJoueur) {
+            
+        ArrayList<Player> listeJoueur = new ArrayList();
+        int incrementeur = 0;
+        for(Map.Entry<Player, ArrayList<Integer>> entree : this.score.entrySet()) {
+            listeJoueur.set(incrementeur, entree.getKey());
+            incrementeur++;
+            }
+        
+        return listeJoueur.get(numJoueur);
+    }
+
+
+    public void modifierScore(Player joueur, ArrayList<Integer> score) {
+            this.getScore().put(joueur, score);
+        }
+    
+    public void modifierTerrain(Terrain nouveauTerrain) {
+        int i = 0;
+        boolean fin = false;
+        
+        while ( i <listeMatch.size() && fin == false ) {
+            if (nouveauTerrain == listeMatch.get(i).getTerrain() &&
+                    this.horaire == listeMatch.get(i).getHoraire())
+                {
+                System.out.println("Changement de terrain impossible, le terrain est déja pris");
+                fin = true;
+                }
+            if (fin == false) {this.terrain = nouveauTerrain;}
+        }
+    }
+
 
     @Override
     public String toString() {

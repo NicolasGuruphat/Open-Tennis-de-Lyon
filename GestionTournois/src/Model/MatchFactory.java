@@ -125,33 +125,33 @@ public class MatchFactory {
                     playerId2 = rs.getInt("idJoueur");
                     int set1 = rs.getInt("set1");
                     if (rs.wasNull()) {
-                        setsPlayer1.add(null);
+                        setsPlayer2.add(null);
                     } else {
-                        setsPlayer1.add(set1);
+                        setsPlayer2.add(set1);
                     }
                     int set2 = rs.getInt("set2");
                     if (rs.wasNull()) {
-                        setsPlayer1.add(null);
+                        setsPlayer2.add(null);
                     } else {
-                        setsPlayer1.add(set2);
+                        setsPlayer2.add(set2);
                     }
                     int set3 = rs.getInt("set3");
                     if (rs.wasNull()) {
-                        setsPlayer1.add(null);
+                        setsPlayer2.add(null);
                     } else {
-                        setsPlayer1.add(set3);
+                        setsPlayer2.add(set3);
                     }
                     int set4 = rs.getInt("set4");
                     if (rs.wasNull()) {
-                        setsPlayer1.add(null);
+                        setsPlayer2.add(null);
                     } else {
-                        setsPlayer1.add(set4);
+                        setsPlayer2.add(set4);
                     }
                     int set5 = rs.getInt("set5");
                     if (rs.wasNull()) {
-                        setsPlayer1.add(null);
+                        setsPlayer2.add(null);
                     } else {
-                        setsPlayer1.add(set5);
+                        setsPlayer2.add(set5);
                     }
                 } else {
                     System.err.println("ERROR!\n");

@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import Model.MatchFactory;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MatchsView {
     private JFrame tourSelect = new JFrame();
@@ -117,7 +118,6 @@ public class MatchsView {
         for (Match m : Match.getListeMatch()) {
             String player1 = "";
             String player2 = "";
-            System.out.println(m.getTour());
             if (m.getTour() == round) {
                 for (Player p : m.getScore().keySet()) {
                     if (player1.isEmpty() && player2.isEmpty()) {
@@ -141,7 +141,7 @@ public class MatchsView {
         JLabel title = new JLabel();
         JLabel scheduleLabel = new JLabel();
         JLabel courtLabel = new JLabel();
-        JLabel scoreLabel = new JLabel();
+        JLabel scoreLabel = new JLabel("À déterminer");
         
         Player player1 = null;
         Player player2 = null;
@@ -152,6 +152,9 @@ public class MatchsView {
         frame.setSize(new Dimension(500, 200));
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        
         
         for (Player p : match.getScore().keySet()) {
             if (player1 == null && player2 == null) {
@@ -162,9 +165,37 @@ public class MatchsView {
         }
         ArrayList<Integer> scoreP1 = match.getScore().get(player1);
         ArrayList<Integer> scoreP2 = match.getScore().get(player2);
+        
+        Integer setP1 = scoreP1.get(0);
+        Integer setP2 = scoreP2.get(0);
+        
+        String affichageScoreP1 = "";
+        String affichageScoreP2 = "";
                 
         title.setText(player1.getFirstName() + " " + player1.getLastName() +
                 " - " + player2.getFirstName() + " " + player2.getLastName());
+        
+        int i = 0;
+        int j = 0;
+        
+        while (setP1 != null && i < scoreP1.size()) {
+            affichageScoreP1 = affichageScoreP1.concat(Integer.toString(setP1) 
+                    + " ");
+            i++;
+            setP1 = scoreP1.get(i);
+        }
+        
+        while (setP2 != null && j < scoreP2.size()) {
+            affichageScoreP2 = affichageScoreP2.concat(Integer.toString(setP2) 
+                    + " ");
+            j++;
+            setP2 = scoreP2.get(j);
+        }
+        
+        if (!affichageScoreP1.equals("") || !affichageScoreP2.equals("")) {
+            scoreLabel.setText(affichageScoreP1 + " - " + affichageScoreP2);
+        }
+        frame.repaint();
         
         JButton exit = new JButton("Retour");
         exit.addActionListener(actionEvent -> {
@@ -174,6 +205,7 @@ public class MatchsView {
         
         frame.add(title);
         frame.add(exit);
+        frame.add(scoreLabel);
         frame.setLayout(new FlowLayout());
     }
 
