@@ -3,9 +3,12 @@ package View;
 import Model.ObjectFactory;
 import Controller.Match;
 import Controller.Player;
+import Controller.Horaire;
+import Controller.Terrain;
 import javax.swing.*;
 import java.awt.*;
 import Model.MatchFactory;
+import java.util.ArrayList;
 
 public class MatchsView {
     private JFrame tourSelect = new JFrame();
@@ -30,6 +33,7 @@ public class MatchsView {
     private void newWindow(int round) {
         tourSelect.setVisible(false);
         matchesList.getContentPane().removeAll();
+        matchesList.repaint();
         matchesListInit(round);
         matchesList.setVisible(true);
         matchesList.repaint();
@@ -71,12 +75,17 @@ public class MatchsView {
             newWindow(5);
             listTitle.setText("Match de finale");
         });
+        JButton exit = new JButton("Quitter");
+        exit.addActionListener(actionEvent -> {
+            System.exit(0);
+        });
         
         tourSelect.add(firstRound);
         tourSelect.add(secondRound);
         tourSelect.add(quarterFinal);
         tourSelect.add(semiFinal);
         tourSelect.add(finalRound);
+        tourSelect.add(exit);
         tourSelect.setLayout(new FlowLayout());
     }
     
@@ -96,6 +105,8 @@ public class MatchsView {
     }
     
     private void createMatchList(int round, JFrame frame) {
+        JList buttonList = new JList();        
+        
         ObjectFactory.createPlayers();
         ObjectFactory.createReferee();
         ObjectFactory.createBallPicker();
@@ -106,19 +117,64 @@ public class MatchsView {
         for (Match m : Match.getListeMatch()) {
             String player1 = "";
             String player2 = "";
+            System.out.println(m.getTour());
             if (m.getTour() == round) {
                 for (Player p : m.getScore().keySet()) {
-                    if (player1.isEmpty()) {
-                        player1 = p.getLastName() + " " + p.getFirstName();
-                    } else {
-                        player2 = p.getLastName() + " " + p.getFirstName();
+                    if (player1.isEmpty() && player2.isEmpty()) {
+                        player1 = p.getFirstName() + " " + p.getLastName();
+                    } else if (!player1.isEmpty() && player2.isEmpty()) {
+                        player2 = p.getFirstName() + " " + p.getLastName();
                     }
                 }
                 JButton match = new JButton(player1 + " - " + player2);
-                frame.add(match); 
+                match.addActionListener(actionEvent -> {
+                    testMethod(m);
+                });
+                frame.add(match);
             }
         }
         frame.repaint();
+    }
+    
+    private void testMethod(Match match) { // Le score, terrain
+        JFrame frame = new JFrame();
+        JLabel title = new JLabel();
+        JLabel scheduleLabel = new JLabel();
+        JLabel courtLabel = new JLabel();
+        JLabel scoreLabel = new JLabel();
+        
+        Player player1 = null;
+        Player player2 = null;
+        Horaire schedule = match.getHoraire();
+        Terrain court = match.getTerrain();
+        
+        
+        frame.setSize(new Dimension(500, 200));
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        
+        for (Player p : match.getScore().keySet()) {
+            if (player1 == null && player2 == null) {
+                player1 = p;
+            } else if (player1 != null && player2 == null) {
+                player2 = p;
+            }
+        }
+        ArrayList<Integer> scoreP1 = match.getScore().get(player1);
+        ArrayList<Integer> scoreP2 = match.getScore().get(player2);
+                
+        title.setText(player1.getFirstName() + " " + player1.getLastName() +
+                " - " + player2.getFirstName() + " " + player2.getLastName());
+        
+        JButton exit = new JButton("Retour");
+        exit.addActionListener(actionEvent -> {
+            frame.getContentPane().removeAll();
+            frame.dispose();
+        });
+        
+        frame.add(title);
+        frame.add(exit);
+        frame.setLayout(new FlowLayout());
     }
 
     public static void main(String[] args) {
