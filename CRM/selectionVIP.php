@@ -14,13 +14,20 @@
                     $bdd=Connection::getBDD();
                     $VIPListe = $_POST["VIPListe"];
                     foreach($VIPListe as $VIP){
-                        
-                        //if arbitre :
-                        $query = $bdd->prepare("INSERT INTO ListeVIP (idArbitre) VALUES (?)");
-                        $data=array($VIP);
-                        $query->execute($data);
+                        echo $VIP;
+                        if($VIP[0]=="A"){
+                            $VIP = substr($VIP, 1);
+                            $query = $bdd->prepare("INSERT INTO ListeVIP (idArbitre) VALUES (?)");
+                            $data=array($VIP);
+                            $query->execute($data);
 
-                        //Ajouter la query
+                        }
+                        elseif($VIP[0]=="R"){
+                            $VIP = substr($VIP, 1);
+                            $query = $bdd->prepare("INSERT INTO ListeVIP (idRamasseur) VALUES (?)");
+                            $data=array($VIP);
+                            $query->execute($data);
+                        }
                     }
                    
                 }
@@ -39,12 +46,25 @@
                     echo
                     "<label>
                     
-                    <input type=\"checkbox\"  name=\"VIPListe[]\" id=$data[0] value=$data[0]>
+                    <input type=\"checkbox\"  name=\"VIPListe[]\" id=$data[0] value=A$data[0]>
                     <span>$data[1] $data[2]</span>
                     </label>
                     </br>
-                    ";
-                   
+                    "; 
+                }
+                echo "<h2>Ramasseur</h2>";
+                $query = $bdd->prepare('SELECT * from RamasseurBalles where idRamasseur not in (select idRamasseur from ListeVIP where idRamasseur is not null)');
+                $query->execute();
+                
+                while($data=$query->fetch()){
+                    echo
+                    "<label>
+                    
+                    <input type=\"checkbox\"  name=\"VIPListe[]\" id=$data[0] value=R$data[0]>
+                    <span>$data[1] $data[2]</span>
+                    </label>
+                    </br>
+                    "; 
                 }
                 
                 echo "</form>";
