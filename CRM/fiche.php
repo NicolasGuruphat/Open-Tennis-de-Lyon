@@ -22,21 +22,22 @@
 			if(isset($_GET['id']))
 			{
 				$id=$_GET['id'];
-				
+				$typeVIP=null;
 				$query = $bdd->prepare("SELECT * from ListeVIP where idFiche=$id");
         		$query->execute();
 				$data=$query->fetch();
 				if($data[1] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation from ListeVIP join Joueur where Joueur.idJoueur=$id");
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description, ATP from ListeVIP join Joueur where Joueur.idJoueur=$id");
+					$typeVIP="joueur";
 				}
 				else if($data[2] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join Arbitre where Arbitre.idArbitre=$id");  
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join Arbitre where Arbitre.idArbitre=$id");  
 				}
 				else if($data[4] != null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$id");           
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join RamasseurDeBalle where RamasseurDeBalle.idRamasseur=$id");           
 				}
 				else if ($data[5]!= null){
-					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite from ListeVIP join AutreVIP where AutreVIP.idAutreVIP=$id");           
+					$secondQuery = $bdd->prepare("SELECT nom, prenom, dateNaissance, nationalite, notation, description from ListeVIP join AutreVIP where AutreVIP.idAutreVIP=$id");           
 				}
 				else{
 					$secondQuery = $bdd->prepare("SELECT * from Joueur");
@@ -56,6 +57,12 @@
 				echo "Nationalité : ".$data2['3'];
 				echo "</br></br>";
 				echo "Priorité : ".$data2['4'];
+				echo "</br></br>";
+				echo "Description : ".$data2['5'];
+				if($typeVIP=="joueur"){
+					echo "</br></br>";
+					echo "Classement ATP : ".$data2['6'];
+				}
 				echo "</div></br>";
 				echo "<img src=\"fakePhoto.jpg\" style = \"float :right;margin:3%\" > ";
 				?>
